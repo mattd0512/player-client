@@ -12,6 +12,8 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import GameShow from './components/games/GameShow'
+// import GameSearchResults from './components/games/GameSearchResults'
 
 const App = () => {
 
@@ -67,6 +69,19 @@ const App = () => {
               <RequireAuth user={user}>
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
+          />
+		  {/* <Route
+            path='/games/search/'
+            element={
+              <RequireAuth user={user}>
+                <GameSearchResults msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+          /> */}
+		<Route
+            path='/games/:apiId'
+            element={
+                <GameShow msgAlert={msgAlert} user={user} />
+              }
           />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (

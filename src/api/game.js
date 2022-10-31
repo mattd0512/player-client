@@ -18,26 +18,26 @@ export const gameCreate = (data, user) => {
 }
 
 // game index
-export const gameIndex = (user) => {
-	return axios({
-		method: 'GET',
-		url: apiUrl + '/games'
-	})
-}
+// export const gameIndex = (user) => {
+// 	return axios({
+// 		method: 'GET',
+// 		url: apiUrl + '/games'
+// 	})
+// }
 
 // game index search results
-export const gameSearchResults = (user, name) => {
-	return axios({
-		method: 'GET',
-		url: apiUrl + '/games/search/' + name
-	})
-}
+// export const gameSearchResults = (user, name) => {
+// 	return axios({
+// 		method: 'GET',
+// 		url: apiUrl + '/games/search/' + name
+// 	})
+// }
 
 // game show
-export const gameShow = (user, id) => {
+export const gameShow = (user, apiId) => {
 	return axios({
 		method: 'GET',
-		url: apiUrl + '/games/' + id
+		url: apiUrl + '/games/' + apiId
 	})
 }
 
