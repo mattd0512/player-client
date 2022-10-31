@@ -1,7 +1,12 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import io from 'socket.io-client'
+import Messages from './Messages'
+import MessageInput from './MessageInput'
+
+import './App.css';
 
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
@@ -15,8 +20,18 @@ import ChangePassword from './components/auth/ChangePassword'
 
 const App = () => {
 
+
+  const [socket, setSocket] = useState(null);
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
+
+  useEffect(() => {
+    const newSocket = io(`http://${window.location.hostname}:3000/chat`);
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
+
+ 
 
   console.log('user in app', user)
   console.log('message alerts', msgAlerts)
@@ -79,8 +94,21 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-			</Fragment>
-		)
+				<div className="App">
+      				<header className="app-header">
+        			 React Chat
+      				</header>
+      				{ socket ? (
+        			<div className="chat-container">
+         				<Messages socket={socket} />
+          				<MessageInput socket={socket} />
+        			</div>
+      			) : (
+        			<div>Not Connected</div>
+      				)}
+    			</div>
+			</Fragment>	
+		);
 }
 
 export default App
