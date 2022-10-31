@@ -4,8 +4,8 @@
 ## Team assigments
 
 ### Front-End
-    1. Matt
-    2. Joshua
+Matt
+Joshua
 
 ### Full Stack
-    1. Abdiaziz
+Abdiaziz
