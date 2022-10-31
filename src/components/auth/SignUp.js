@@ -8,16 +8,14 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const SignUp = (props) => {
-	// constructor(props) {
-	// 	super(props)
+const submitButtonStyle = {
+    backgroundColor: 'black',
+    marginTop: '10px'
+}
 
-	// 	this.state = {
-	// 		email: '',
-	// 		password: '',
-	// 		passwordConfirmation: '',
-	// 	}
-	// }    
+
+const SignUp = (props) => {
+
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -106,7 +104,7 @@ const SignUp = (props) => {
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button style={ submitButtonStyle } variant='primary' type='submit'>
                         Submit
                     </Button>
                 </Form>
