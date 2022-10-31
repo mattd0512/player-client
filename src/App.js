@@ -70,13 +70,6 @@ const App = () => {
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
-		  {/* <Route
-            path='/games/search/'
-            element={
-              <RequireAuth user={user}>
-                <GameSearchResults msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          /> */}
 		<Route
             path='/games/:apiId'
             element={

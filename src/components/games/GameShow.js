@@ -3,88 +3,64 @@ import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 
-const cardContainerLayout = {
+const findingResult = {
     display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: '30%',
+    fontSize: '200%',
+    color: 'blue'
 }
 
-// const GameShow = ({ user, msgAlert }) => {
-
-//     const [allGames, setAllGames] = useState([])
-
-//     useEffect((user) => {
-//         gameShow(user)
-//         .then(res => {
-//             setAllGames(res.data.games)
-//         })
-//         .catch((error) => {
-//             msgAlert({
-//                 heading: 'Failure',
-//                 message: 'Failure to query show game ' + error,
-//                 variant: 'danger'
-//             })
-//         })
-//     }, []
-// )
-
-//     const allGamesJSX = allGames.map(game => {
-//         return (
-//             <Link to={`/games/${game.apiId}`} key={game.apiId}>
-//                 <li>Name: {game.title}</li>
-//             </Link>
-//         )
-//     })
-
-//     const gameCards = allGames.map(game => (
-//         <Card key={ game.apiId } style={{ width: '30%', margin: 5 }}>
-//             <Card.Header>{ game.title }</Card.Header>
-//             <Card.Body>
-//                 <Card.Text>
-//                     <Link to={ `/games/${game.apiId}` }>View { game.title }</Link>
-//                 </Card.Text>
-//             </Card.Body>
-//         </Card>
-//     ))
-
-//     return (
-//         <div className='container-md' style={ cardContainerLayout }>
-//             {/* <h3>Testing</h3> */}
-//             {/* { gameCards } */}
-//         </div>
-//     )
-// }
-
+const imageDisplay = {
+    height: '50%',
+    width: '50%',
+}
 
 const GameShow = ({ user, msgAlert }) => {
 
     const [game, setGame] = useState(null)
 
-    const { id } = useParams()
+    const { apiId } = useParams()
 
     useEffect(() => {
-        gameShow(user, id)
+        gameShow(user, apiId)
             .then((res) => {
-                setGame(res.data.game)
+                console.log(res.data.results)
+                setGame({
+                    name: res.data.results.name,
+                    description: res.data.results.deck,
+                    image: res.data.results.image.original_url
+                })
+                // setGame(res.data.results.name)
             })
             .catch((error) => {
                 msgAlert({
                     heading: 'Failure',
-                    message: 'Failure to show game' + error,
+                    message: 'Failure to show game ' + error,
                     variant: 'danger'
                 })
             })
     }, [])
 
+    if (!game) {
+        return (
+        <>
+        <Container style={findingResult}>
+            <p>Finding game...</p>
+        </Container>
+        </>
+    )}
+
     return (
         <>
 			<Container className="fluid">
                 <Card>
-                <Card.Header>{ game.title }</Card.Header>
+                <Card.Header><h3>{ game.name }</h3></Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        <small>Title: { game.title }</small><br/>
+                        {/* <h3>Title: { game.name }</h3><br/> */}
                         <small>Description: { game.description }</small><br/>
+                        <img src={ game.image } style={imageDisplay}/>
                     </Card.Text>
                 </Card.Body>
                 </Card>

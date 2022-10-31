@@ -16,27 +16,27 @@ const headerStyle = {
 
 const authenticatedOptions = (
 	<>
-		<Nav.Item>
+		<Nav.Link>
 			<Link to='change-password' style={linkStyle} className='m-2'>
 				Change Password
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</Nav.Link>
+		<Nav.Link>
 			<Link to='sign-out' style={linkStyle} className='m-2'>
 				Sign Out
 			</Link>
-		</Nav.Item>
+		</Nav.Link>
 	</>
 )
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item>
-		    <Link to='sign-up' style={linkStyle} className='m-2'>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item>
+        <Nav.Link>
+		    <Link to='sign-up' style={linkStyle} className='m-2'>Create Account</Link>
+        </Nav.Link>
+        <Nav.Link>
 		    <Link to='sign-in' style={linkStyle} className='m-2'>Sign In</Link>
-        </Nav.Item>
+        </Nav.Link>
 	</>
 )
 
