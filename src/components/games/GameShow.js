@@ -3,14 +3,16 @@ import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 
-const backgroundColor = {
+const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
+    // backgroundColor: 'rgb(120, 219, 111)',
     display: 'flex',
     justifyContent: 'center'
 }
 
 const cardBody = {
     width: '100%',
+    height: '100%'
 }
 
 const boldText = {
@@ -31,14 +33,15 @@ const cardCSS = {
 const findingResult = {
     display: 'flex',
     justifyContent: 'center',
+    fontWeight: 'bold',
     marginTop: '30%',
     fontSize: '200%',
-    color: 'blue'
+    color: 'rgb(241, 50, 50)'
 }
 
 const imageDisplay = {
-    height: '70%',
-    width: '70%',
+    height: '90%',
+    width: '90%'
 }
 
 const GameShow = ({ user, msgAlert }) => {
@@ -78,7 +81,7 @@ const GameShow = ({ user, msgAlert }) => {
 
     return (
         <>
-        <div style={backgroundColor}>
+        <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
                 <Card.Header><h3>{ game.name }</h3></Card.Header>

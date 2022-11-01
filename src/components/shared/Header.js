@@ -9,7 +9,6 @@ const linkStyle = {
 }
 
 const headerStyle = {
-    // backgroundColor: 'red',
 	backgroundColor: 'rgb(241, 50, 50)'
 }
 
