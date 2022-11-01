@@ -9,13 +9,23 @@ const linkStyle = {
 }
 
 const headerStyle = {
-    backgroundColor: 'red',
-	display: 'flex',
-	justifyContent: 'center'
+    // backgroundColor: 'red',
+	backgroundColor: 'rgb(241, 50, 50)'
+}
+
+const appLogo = {
+    fontFamily: 'Monoton',
+	fontWeight: 'bold',
+	marginLeft: '1%'
+}
+
+const unauthenticatedCSS = {
+	paddingLeft: '45rem'
 }
 
 const authenticatedOptions = (
 	<>
+	<div>
 		<Nav.Link>
 			<Link to='change-password' style={linkStyle} className='m-2'>
 				Change Password
@@ -26,12 +36,13 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
+		</div>
 	</>
 )
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Link>
+        <Nav.Link style={unauthenticatedCSS}>
 		    <Link to='sign-up' style={linkStyle} className='m-2'>Create Account</Link>
         </Nav.Link>
         <Nav.Link>
@@ -52,7 +63,7 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
 	<Navbar style={ headerStyle } variant='dark' expand='md'>
-		<Navbar.Brand>
+		<Navbar.Brand style={ appLogo }>
             <Link to='/' style={linkStyle}>
                 GameShare
             </Link>
@@ -63,7 +74,7 @@ const Header = ({ user }) => (
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
 				)}
-				{alwaysOptions}
+				{/* {alwaysOptions} */}
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
 		</Navbar.Collapse>

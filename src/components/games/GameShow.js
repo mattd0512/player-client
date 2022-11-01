@@ -3,6 +3,31 @@ import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 
+const backgroundColor = {
+    backgroundColor: 'rgb(212, 212, 212)',
+    display: 'flex',
+    justifyContent: 'center'
+}
+
+const cardBody = {
+    width: '100%',
+}
+
+const boldText = {
+    fontWeight: 'bold'
+}
+
+const cardCSS = {
+    marginTop: '20px',
+    marginBottom: '20px',
+    width: '20rem',
+    height: '35rem',
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
+    borderRadius: '2.5%'
+}
+
 const findingResult = {
     display: 'flex',
     justifyContent: 'center',
@@ -12,8 +37,8 @@ const findingResult = {
 }
 
 const imageDisplay = {
-    height: '50%',
-    width: '50%',
+    height: '70%',
+    width: '70%',
 }
 
 const GameShow = ({ user, msgAlert }) => {
@@ -53,18 +78,23 @@ const GameShow = ({ user, msgAlert }) => {
 
     return (
         <>
+        <div style={backgroundColor}>
 			<Container className="fluid">
-                <Card>
+                <Card style={cardCSS}>
                 <Card.Header><h3>{ game.name }</h3></Card.Header>
                 <Card.Body>
                     <Card.Text>
-                        {/* <h3>Title: { game.name }</h3><br/> */}
-                        <small>Description: { game.description }</small><br/>
-                        <img src={ game.image } style={imageDisplay}/>
+                        <div style={cardBody}>
+                        <img src={ game.image } style={imageDisplay}/><br/><br/>
+                        </div>
+                        <div>
+                            <small><span style={boldText}>Description:</span> { game.description }</small>
+                        </div>
                     </Card.Text>
                 </Card.Body>
                 </Card>
             </Container>
+        </div>
         </>
     )
 }
