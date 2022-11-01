@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 import io from 'socket.io-client'
 import Messages from './Messages'
 import MessageInput from './MessageInput'
+import GameReview from './GameReview'
 
 import './App.css';
 
@@ -82,6 +83,11 @@ const App = () => {
               <RequireAuth user={user}>
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
+          />
+		     <Route
+            path='/reviews'
+            element={
+                <GameReview />}
           />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (

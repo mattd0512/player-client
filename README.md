@@ -231,6 +231,15 @@ export default AboutPage
 
 ## [License](LICENSE)
 
+<<<<<<< HEAD
+### Front-End
+Matt
+Joshua
+
+### Full Stack
+Abdiaziz
+=======
 1. All content is licensed under a CC­BY­NC­SA 4.0 license.
 1. All software code is licensed under GNU GPLv3. For commercial use or
     alternative licensing, please contact legal@ga.co.
+>>>>>>> dfab7945f0e9610f80d8446f5b6674749638d51d
