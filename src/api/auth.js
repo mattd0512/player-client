@@ -22,6 +22,8 @@ export const signIn = (credentials) => {
 		method: 'POST',
 		data: {
 			credentials: {
+                name: credentials.name,
+                username: credentials.username,
 				email: credentials.email,
 				password: credentials.password,
 			},

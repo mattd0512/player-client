@@ -95,7 +95,7 @@ const App = () => {
             element={
                 <GameShow msgAlert={msgAlert} user={user} />
               }
-
+        />
 		     <Route
             path='/reviews'
             element={

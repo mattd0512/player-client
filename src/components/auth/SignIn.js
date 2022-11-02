@@ -16,7 +16,7 @@ const SignIn = (props) => {
 	// 		password: '',
 	// 	}
 	// }
-    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
@@ -31,7 +31,7 @@ const SignIn = (props) => {
         console.log('the props', props)
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password}
+        const credentials = {name, password}
 
 		signIn(credentials)
 			.then((res) => setUser(res.data.user))
@@ -44,7 +44,7 @@ const SignIn = (props) => {
 			)
 			.then(() => navigate('/'))
 			.catch((error) => {
-                setEmail('')
+                setName('')
                 setPassword('')
 				msgAlert({
 					heading: 'Sign In Failed with error: ' + error.message,
@@ -60,14 +60,14 @@ const SignIn = (props) => {
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Email address or Username</Form.Label>
                         <Form.Control
                             required
-                            type='email'
-                            name='email'
-                            value={email}
-                            placeholder='Enter email'
-                            onChange={e => setEmail(e.target.value)}
+                            type='text'
+                            name='name'
+                            value={name}
+                            placeholder='Enter email or username'
+                            onChange={e => setName(e.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId='password'>
