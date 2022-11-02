@@ -2,40 +2,58 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+
 const linkStyle = {
     color: 'white',
     textDecoration: 'none'
 }
+
+const headerStyle = {
+	backgroundColor: 'rgb(241, 50, 50)'
+}
+
+const appLogo = {
+    fontFamily: 'Monoton',
+	fontWeight: 'bold',
+	marginLeft: '1%'
+}
+
+const unauthenticatedCSS = {
+	paddingLeft: '45rem'
+}
+
 const authenticatedOptions = (
 	<>
-		<Nav.Item>
-			<Link to='change-password' style={linkStyle}>
+	<div>
+		<Nav.Link>
+			<Link to='change-password' style={linkStyle} className='m-2'>
 				Change Password
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
-			<Link to='sign-out' style={linkStyle}>
+		</Nav.Link>
+		<Nav.Link>
+			<Link to='sign-out' style={linkStyle} className='m-2'>
 				Sign Out
 			</Link>
-		</Nav.Item>
+		</Nav.Link>
+		</div>
 	</>
 )
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item>
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-        </Nav.Item>
+        <Nav.Link style={unauthenticatedCSS}>
+		    <Link to='sign-up' style={linkStyle} className='m-2'>Create Account</Link>
+        </Nav.Link>
+        <Nav.Link>
+		    <Link to='sign-in' style={linkStyle} className='m-2'>Sign In</Link>
+        </Nav.Link>
 	</>
 )
 
 const alwaysOptions = (
 	<>
 		<Nav.Link>
-			<Link to='/' style={linkStyle}>
+			<Link to='/' style={linkStyle} className='m-2'>
 				Home
 			</Link>
 		</Nav.Link>
@@ -43,10 +61,10 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
-		<Navbar.Brand>
+	<Navbar style={ headerStyle } variant='dark' expand='md'>
+		<Navbar.Brand style={ appLogo }>
             <Link to='/' style={linkStyle}>
-                react-auth-template
+                GameShare
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -55,7 +73,7 @@ const Header = ({ user }) => (
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
 				)}
-				{alwaysOptions}
+				{/* {alwaysOptions} */}
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
 		</Navbar.Collapse>

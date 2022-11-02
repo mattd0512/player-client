@@ -9,6 +9,7 @@ import GameReview from './GameReview'
 
 import './App.css';
 
+
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
@@ -18,6 +19,10 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import GameShow from './components/games/GameShow'
+// import GameSearchResults from './components/games/GameSearchResults'
+
+
 
 const App = () => {
 
@@ -84,10 +89,18 @@ const App = () => {
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
+
+		<Route
+            path='/games/:apiId'
+            element={
+                <GameShow msgAlert={msgAlert} user={user} />
+              }
+
 		     <Route
             path='/reviews'
             element={
                 <GameReview />}
+
           />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
