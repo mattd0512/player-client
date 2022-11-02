@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
+import Spinner from 'react-bootstrap/Spinner'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -74,7 +75,11 @@ const GameShow = ({ user, msgAlert }) => {
         return (
         <>
         <Container style={findingResult}>
-            <p>Finding game...</p>
+            <p>Finding game</p>
+            <p>
+            <Spinner animation='border' role='status'><p></p><p></p>
+            </Spinner>
+            </p>
         </Container>
         </>
     )}

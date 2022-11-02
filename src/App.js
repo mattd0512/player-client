@@ -20,7 +20,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
-// import GameSearchResults from './components/games/GameSearchResults'
+import GameSearchResults from './components/games/GameSearchResults'
 
 
 
@@ -92,6 +92,12 @@ const App = () => {
 
 		<Route
             path='/games/:apiId'
+            element={
+                <GameShow msgAlert={msgAlert} user={user} />
+              }
+        />
+		<Route
+            path='/games/search/:name'
             element={
                 <GameShow msgAlert={msgAlert} user={user} />
               }
