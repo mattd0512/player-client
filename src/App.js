@@ -21,6 +21,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
 import GameSearchResults from './components/games/GameSearchResults'
+import Search from './components/Search'
 
 
 
@@ -99,7 +100,7 @@ const App = () => {
 		<Route
             path='/games/search/:name'
             element={
-                <GameShow msgAlert={msgAlert} user={user} />
+                <GameSearchResults msgAlert={msgAlert} user={user} />
               }
         />
 		     <Route

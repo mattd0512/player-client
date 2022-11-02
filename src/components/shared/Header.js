@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import Search from '../Search'
 
 const linkStyle = {
     color: 'white',
@@ -52,11 +53,9 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
-			<Link to='/' style={linkStyle} className='m-2'>
-				Home
-			</Link>
-		</Nav.Link>
+		<Nav.Item>
+			<Search/>
+		</Nav.Item>
 	</>
 )
 
@@ -73,7 +72,7 @@ const Header = ({ user }) => (
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
 				)}
-				{/* {alwaysOptions} */}
+				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
 		</Navbar.Collapse>

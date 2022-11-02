@@ -16,6 +16,10 @@ const cardBody = {
     height: '100%'
 }
 
+const spinnerCSS = {
+    marginLeft: '15%',
+}
+
 const boldText = {
     fontWeight: 'bold'
 }
@@ -70,6 +74,7 @@ const GameShow = ({ user, msgAlert }) => {
                 })
             })
     }, [])
+
 
     if (!game) {
         return (

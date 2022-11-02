@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react' 
 import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { gameShow } from '../../api/game'
+import { gameSearchResults } from '../../api/game'
+import Spinner from 'react-bootstrap/Spinner'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -15,6 +16,10 @@ const cardBody = {
     height: '100%'
 }
 
+const spinnerCSS = {
+    marginLeft: '15%',
+}
+
 const boldText = {
     fontWeight: 'bold'
 }
@@ -22,8 +27,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '20rem',
-    height: '35rem',
+    width: '5rem',
+    height: '15rem',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -44,27 +49,26 @@ const imageDisplay = {
     width: '90%'
 }
 
-const GameShow = ({ user, msgAlert }) => {
+const GameSearch = ({ user, msgAlert }) => {
 
     const [game, setGame] = useState(null)
 
-    const { apiId } = useParams()
+    const { name } = useParams()
 
     useEffect(() => {
-        gameShow(user, apiId)
+        gameSearchResults(user, name)
             .then((res) => {
-                console.log(res.data.results)
+                console.log(res.data.results.name)
                 setGame({
-                    name: res.data.results.name,
-                    description: res.data.results.deck,
-                    image: res.data.results.image.original_url
+                    name: res.data.results[0].name,
+                    // description: res.data.results.deck,
+                    image: res.data.results[0].image.original_url
                 })
-                // setGame(res.data.results.name)
             })
             .catch((error) => {
                 msgAlert({
                     heading: 'Failure',
-                    message: 'Failure to show game ' + error,
+                    message: 'Failure to find games ' + error,
                     variant: 'danger'
                 })
             })
@@ -72,11 +76,17 @@ const GameShow = ({ user, msgAlert }) => {
 
     if (!game) {
         return (
-        <>
-        <Container style={findingResult}>
-            <p>Finding game...</p>
-        </Container>
-        </>
+            <>
+            <div style={backgroundCSS}>
+            <Container style={findingResult}>
+                <p>Finding game</p>
+                <p>     
+                <Spinner animation='border' style={spinnerCSS}> 
+                </Spinner>
+                </p>
+            </Container>
+            </div>
+            </>
     )}
 
     return (
@@ -102,4 +112,4 @@ const GameShow = ({ user, msgAlert }) => {
     )
 }
 
-export default GameShow
+export default GameSearch
