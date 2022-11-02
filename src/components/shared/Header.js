@@ -17,6 +17,9 @@ const authenticatedOptions = (
 			<Link to='sign-out' style={linkStyle}>
 				Sign Out
 			</Link>
+			<Link to='chat' style={linkStyle}>
+				Chat
+			</Link>
 		</Nav.Item>
 	</>
 )

@@ -54,3 +54,13 @@ export const changePassword = (passwords, user) => {
 		},
 	})
 }
+
+export const chat = (user) => {
+	return axios({
+		url: apiUrl + '/chat',
+		method: 'POST',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}

@@ -3,8 +3,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import io from 'socket.io-client'
-import Messages from './Messages'
-import MessageInput from './MessageInput'
+
 import GameReview from './GameReview'
 
 import './App.css';
@@ -18,6 +17,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+
 
 const App = () => {
 
@@ -69,13 +69,15 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
+          <Route path='/sign-out'element={<RequireAuth user={user}>
                 <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
               </RequireAuth>
             }
+          />,
+					
+					<Route path='/chat'element={
+              <RequireAuth user={user}>
+              </RequireAuth>}
           />
           <Route
             path='/change-password'
@@ -100,19 +102,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-				<div className="App">
-      				<header className="app-header">
-        			 React Chat
-      				</header>
-      				{ socket ? (
-        			<div className="chat-container">
-         				<Messages socket={socket} />
-          				<MessageInput socket={socket} />
-        			</div>
-      			) : (
-        			<div>Not Connected</div>
-      				)}
-    			</div>
+				
 			</Fragment>	
 		);
 }
