@@ -8,16 +8,21 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const SignUp = (props) => {
-	// constructor(props) {
-	// 	super(props)
+const pageBody = {
+    backgroundColor: 'rgb(120, 219, 111)'
+}
 
-	// 	this.state = {
-	// 		email: '',
-	// 		password: '',
-	// 		passwordConfirmation: '',
-	// 	}
-	// }    
+const submitButtonStyle = {
+    // backgroundColor: 'black',
+    backgroundColor: 'rgb(35, 114, 28)',
+    borderColor: 'black',
+    marginTop: '10px',
+    borderRadius: '15%'
+}
+
+
+const SignUp = (props) => {
+
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -58,9 +63,10 @@ const SignUp = (props) => {
 
 
     return (
-        <div className='row'>
+        <div className='row' style={ pageBody }>
             <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Sign Up</h3>
+                <h3>Welcome to GameShare!</h3>
+                <h6>Create your account below</h6>
                 <Form onSubmit={onSignUp}>
                 <Form.Group >
                         <Form.Label>Username</Form.Label>
@@ -106,7 +112,7 @@ const SignUp = (props) => {
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button style={ submitButtonStyle } variant='primary' type='submit'>
                         Submit
                     </Button>
                 </Form>
