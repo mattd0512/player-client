@@ -47,7 +47,7 @@ const GameReview = () => {
                 })}
             </div>
             <textarea
-                placeholder="Tell us what you think?"
+                placeholder="Tell us what you think!"
                 style={styles.textarea}
             />
             <button style={styles.button}>Submit</button>
@@ -59,7 +59,9 @@ const styles = {
     container: {
         display: "flex",
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "flex-end",
+        marginRight: 60,
+        margin: 50
     },
     textarea: {
         border: "1px solid #a9a9a9",
@@ -74,7 +76,10 @@ const styles = {
         borderRadius: 5,
         width: 300,
         padding: 10
-    }
+    },
+    stars: {
+        marginRight: 60
+    },
 }
 
 export default GameReview
