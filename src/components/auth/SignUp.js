@@ -77,6 +77,8 @@ const SignUp = (props) => {
                             type='strings'
                             name='username'
                             value={username}
+                            pattern="/^@/"
+                            title="Username cannot include '@'"
                             placeholder='Enter username'
                             onChange={e => setUsername(e.target.value)}
                         />
