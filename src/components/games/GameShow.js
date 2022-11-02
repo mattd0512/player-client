@@ -73,15 +73,17 @@ const GameShow = ({ user, msgAlert }) => {
 
     if (!game) {
         return (
-        <>
-        <Container style={findingResult}>
-            <p>Finding game</p>
-            <p>
-            <Spinner animation='border' role='status'><p></p><p></p>
-            </Spinner>
-            </p>
-        </Container>
-        </>
+            <>
+            <div style={backgroundCSS}>
+            <Container style={findingResult}>
+                <p>Finding game</p>
+                <p>     
+                <Spinner animation='border' style={spinnerCSS}> 
+                </Spinner>
+                </p>
+            </Container>
+            </div>
+            </>
     )}
 
     return (
