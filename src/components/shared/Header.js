@@ -1,11 +1,23 @@
 import React, { Fragment } from 'react'
+import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import Search from '../Search'
 
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+	fontFamily: 'Bungee Inline',
+	fontSize: '13px'
+	// fontWeight: 'bold'
+}
+
+const logoStyle = {
+    color: 'white',
+    textDecoration: 'none',
+	fontFamily: 'Bungee Inline',
+	fontSize: '20px'
 }
 
 const headerStyle = {
@@ -13,8 +25,8 @@ const headerStyle = {
 }
 
 const appLogo = {
-    fontFamily: 'Monoton',
-	fontWeight: 'bold',
+    fontFamily: 'Bungee Inline',
+	// fontWeight: 'bold',
 	marginLeft: '1%'
 }
 
@@ -35,14 +47,7 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
-		<Nav.Link>
-			<Link to='chat' style={linkStyle}>
-				Chat
-			</Link>
-	    </Nav.Link>
-		</div>
-	</>
-)
+
 
 const unauthenticatedOptions = (
 	<>
@@ -50,25 +55,25 @@ const unauthenticatedOptions = (
 		    <Link to='sign-up' style={linkStyle} className='m-2'>Create Account</Link>
         </Nav.Link>
         <Nav.Link>
-		    <Link to='sign-in' style={linkStyle} className='m-2'>Sign In</Link>
+		    <Link to='sign-in' style={linkStyle} className='m-2'>Login</Link>
         </Nav.Link>
 	</>
 )
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
-			<Link to='/' style={linkStyle} className='m-2'>
-				Home
-			</Link>
-		</Nav.Link>
+
+		<Nav.Item>
+			<Search/>
+		</Nav.Item>
 	</>
 )
 
 const Header = ({ user }) => (
+	
 	<Navbar style={ headerStyle } variant='dark' expand='md'>
 		<Navbar.Brand style={ appLogo }>
-            <Link to='/' style={linkStyle}>
+            <Link to='/' style={logoStyle}>
                 GameShare
             </Link>
         </Navbar.Brand>
@@ -78,11 +83,19 @@ const Header = ({ user }) => (
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
 				)}
+				{/* {alwaysOptions}
+				{user ? authenticatedOptions : unauthenticatedOptions} */}
+			</Nav>
+			<Container fluid='md'>
+			<Nav className='justify-content-end'>
 				{/* {alwaysOptions} */}
+				<Search/>
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
+			</Container>
 		</Navbar.Collapse>
 	</Navbar>
+	
 )
 
 export default Header
