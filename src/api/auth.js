@@ -2,6 +2,7 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const signUp = (credentials) => {
+    // this is here to ensure @ doesn't get passed to the DB when creating a user
     if (credentials.username.includes('@')) {
         credentials.username = null
     }
