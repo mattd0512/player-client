@@ -35,7 +35,7 @@ const unauthenticatedCSS = {
 }
 
 const authenticatedOptions = (
-	<>
+	
 	<div>
 		<Nav.Link>
 			<Link to='change-password' style={linkStyle} className='m-2'>
@@ -47,7 +47,8 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
-
+		</div>
+)
 
 const unauthenticatedOptions = (
 	<>
