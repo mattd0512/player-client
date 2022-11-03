@@ -101,11 +101,6 @@ const App = () => {
                 <GameSearchResults msgAlert={msgAlert} user={user} />
               }
         />
-		     {/* <Route
-            path='/reviews'
-            element={
-                <GameReview />}
-		 /> */}
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

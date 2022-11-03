@@ -3,8 +3,9 @@ import { Container, Card, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
-import NewReviewModal from '../reviews/NewReviewModal'
+import { FiBookmark } from "react-icons/fi"
 import ShowReview from '../reviews/ShowReview'
+import NewReviewModal from '../reviews/NewReviewModal'
 import EditReviewModal from '../reviews/EditReviewModal'
 
 const backgroundCSS = {
@@ -15,9 +16,9 @@ const backgroundCSS = {
 }
 
 const cardHeader = {
-    fontFamily: 'Bungee Inline',
+    fontFamily: 'Rubik',
     // fontWeight: 'bold',
-    fontSize: '200px'
+    // fontSize: '10px'
 }
 
 const cardBody = {
@@ -36,8 +37,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '20rem',
-    height: '35rem',
+    width: '25rem',
+    // height: '35rem',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -54,8 +55,9 @@ const findingResult = {
 }
 
 const imageDisplay = {
-    height: '90%',
-    width: '90%'
+    // height: '70%',
+    width: '20rem',
+    alignSelf: 'center'
 }
 
 const cardContainerLayout = {
@@ -92,21 +94,20 @@ const GameShow = ({ user, msgAlert }) => {
             })
     }, [])
 
-    // let reviewCards
-    // if (game) {
-    //     if (game.reviews.length > 0) {
-    //         reviewCards = game.reviews.map(review => (
-    //             <ShowReview 
-    //                 key={review._id}
-    //                 review={review}
-    //                 game={game}
-    //                 user={user}
-    //                 msgAlert={msgAlert}
-    //                 triggerRefresh={() => setUpdated(prev => !prev)}
-    //             />
-    //         ))
-    //     }
-    // }
+    const [currentValue, setCurrentValue] = React.useState(0)
+    const [hoverValue, setHoverValue] = React.useState(undefined)
+
+    const handleClick = value => {
+        setCurrentValue(value)
+    }
+
+    const handleMouseOver = value => {
+        setHoverValue(value)
+    }
+
+    const handleMouseLeave = () => {
+        setHoverValue(undefined)
+    }
 
 
     if (!game) {
@@ -129,8 +130,8 @@ const GameShow = ({ user, msgAlert }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
-                <Card.Img variant="top" src={game.image} />
+                <Card.Header style={cardHeader}><h4>{ game.name }</h4></Card.Header>
+                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
                 <Card.Body>
                     <Card.Text>
                         {/* <div style={cardBody}>
@@ -140,6 +141,7 @@ const GameShow = ({ user, msgAlert }) => {
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>
                     </Card.Text>
+                    <FiBookmark/>
                 </Card.Body>
                 </Card>
                 <Card>
