@@ -1,6 +1,7 @@
 import React from "react"
 import "./App.css"
 import { FaStar } from "react-icons/fa"
+import ReviewSection from "./ReviewSection"
 
 const colors = {
     orange: "#FFBA5A",
@@ -61,7 +62,7 @@ const styles = {
         flexDirection: "column",
         alignItems: "flex-end",
         marginRight: 60,
-        margin: 50
+        margin: 80
     },
     textarea: {
         border: "1px solid #a9a9a9",

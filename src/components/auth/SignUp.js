@@ -37,6 +37,8 @@ const SignUp = (props) => {
 
         const credentials = {username, email, password, passwordConfirmation}
 
+        credentials.name = username
+
 		signUp(credentials)
 			.then(() => signIn(credentials))
 			.then((res) => setUser(res.data.user))
@@ -75,6 +77,8 @@ const SignUp = (props) => {
                             type='strings'
                             name='username'
                             value={username}
+                            pattern="[^@]"
+                            title="Username cannot include '@'"
                             placeholder='Enter username'
                             onChange={e => setUsername(e.target.value)}
                         />

@@ -2,6 +2,9 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 export const signUp = (credentials) => {
+    if (credentials.username.includes('@')) {
+        credentials.username = null
+    }
 	return axios({
 		method: 'POST',
 		url: apiUrl + '/sign-up',
@@ -22,6 +25,8 @@ export const signIn = (credentials) => {
 		method: 'POST',
 		data: {
 			credentials: {
+                name: credentials.name,
+                username: credentials.username,
 				email: credentials.email,
 				password: credentials.password,
 			},

@@ -2,9 +2,9 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import io from 'socket.io-client'
-import Messages from './Messages'
-import MessageInput from './MessageInput'
+// import io from 'socket.io-client'
+// import Messages from './Messages'
+// import MessageInput from './MessageInput'
 
 import './App.css';
 
@@ -30,11 +30,11 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
 
-  useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3000/chat`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+//   useEffect(() => {
+//     const newSocket = io(`http://${window.location.hostname}:3000/chat`);
+//     setSocket(newSocket);
+//     return () => newSocket.close();
+//   }, [setSocket]);
 
  
 
@@ -104,7 +104,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-				<div className="App">
+				{/* <div className="App">
       				<header className="app-header">
         			 React Chat
       				</header>
@@ -116,7 +116,7 @@ const App = () => {
       			) : (
         			<div>Not Connected</div>
       				)}
-    			</div>
+    			</div> */}
 			</Fragment>	
 		);
 }

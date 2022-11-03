@@ -3,6 +3,7 @@ import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import GameReview from '../../GameReview'
+import ReviewSection from '../../ReviewSection'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -43,6 +44,26 @@ const findingResult = {
 const imageDisplay = {
     height: '90%',
     width: '90%'
+}
+
+const reviewCSS = {
+    width: 420,
+    height: 400,
+    justifyContent: 'flex-end',
+    marginLeft: '430px',
+    marginTop: '-450px',
+    marginBottom: '50px',
+    borderRadius: '2.5%'
+}
+
+const reviewsCSS = {
+    width: 420,
+    height: 400,
+    justifyContent: 'flex-end',
+    marginLeft: '950px',
+    marginTop: '-450px',
+    marginBottom: '50px',
+    borderRadius: '2.5%'
 }
 
 const GameShow = ({ user, msgAlert }) => {
@@ -97,9 +118,18 @@ const GameShow = ({ user, msgAlert }) => {
                     </Card.Text>
                 </Card.Body>
                 </Card>
+                <div>
+                    <Card style={reviewCSS}>
+                        <GameReview />
+                    </Card>
+                </div>
+                <div>
+                    <Card style={reviewsCSS}>
+                        <ReviewSection />
+                    </Card>
+                </div>
             </Container>
         </div>
-        <GameReview />
         </>
     )
 }
