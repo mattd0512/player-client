@@ -5,7 +5,7 @@ import { createReview } from "../../api/review"
 
 const NewReviewModal = (props) => {
     const {
-        user, show, handleClose, msgAlert, triggerRefresh
+        user, game, show, handleClose, msgAlert, triggerRefresh
     } = props
 
     const [review, setReview] = useState({})
@@ -26,7 +26,7 @@ const NewReviewModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        createReview(user, review)
+        createReview(user, game._id, review)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({
