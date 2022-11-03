@@ -18,7 +18,7 @@ const Search = () => {
     }
     return (
     <div>
-    <form onSubmit={searchGame}>
+    <form onSubmit={searchGame} action="/games/search/" method="get">
         <label htmlFor="header-search">
             <span className="visually-hidden">Search all games</span>
         </label>
