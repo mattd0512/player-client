@@ -6,7 +6,9 @@ import Search from '../Search'
 
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+	fontFamily: 'Bungee Inline',
+	// fontWeight: 'bold'
 }
 
 const headerStyle = {
@@ -14,8 +16,8 @@ const headerStyle = {
 }
 
 const appLogo = {
-    fontFamily: 'Monoton',
-	fontWeight: 'bold',
+    fontFamily: 'Bungee Inline',
+	// fontWeight: 'bold',
 	marginLeft: '1%'
 }
 

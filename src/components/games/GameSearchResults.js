@@ -51,15 +51,15 @@ const imageDisplay = {
 
 const GameSearch = ({ user, msgAlert }) => {
 
-    const [game, setGame] = useState(null)
+    const [allGames, setAllGames] = useState([])
 
     const { name } = useParams()
 
     useEffect(() => {
         gameSearchResults(user, name)
             .then((res) => {
-                console.log(res.data.results.name)
-                setGame({
+                // console.log(res.data.results.name)
+                setAllGames({
                     name: res.data.results[0].name,
                     // description: res.data.results.deck,
                     image: res.data.results[0].image.original_url
@@ -74,7 +74,19 @@ const GameSearch = ({ user, msgAlert }) => {
             })
     }, [])
 
-    if (!game) {
+    // const gameCards = allGames.map(game => (
+    //     <Card>
+    //         <Card.Header>{ game.name }</Card.Header>
+    //         <Card.Body>
+    //             <Card.Text>
+    //                 <p>{game.name}</p>
+    //             </Card.Text>
+    //         </Card.Body>
+    //     </Card>
+    // ))
+
+
+    if (!allGames) {
         return (
             <>
             <div style={backgroundCSS}>
@@ -94,14 +106,11 @@ const GameSearch = ({ user, msgAlert }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header><h3>{ game.name }</h3></Card.Header>
+                <Card.Header><h3>{ allGames.name }</h3></Card.Header>
                 <Card.Body>
                     <Card.Text>
                         <div style={cardBody}>
-                        <img src={ game.image } style={imageDisplay}/><br/><br/>
-                        </div>
-                        <div>
-                            <small><span style={boldText}>Description:</span> { game.description }</small>
+                        <img src={ allGames.image } style={imageDisplay}/><br/><br/>
                         </div>
                     </Card.Text>
                 </Card.Body>
@@ -110,6 +119,13 @@ const GameSearch = ({ user, msgAlert }) => {
         </div>
         </>
     )
+
+    // return (
+    //     <div className='container-md'>
+    //         {/* <ul>{allPetsJSX}</ul> */}
+    //         { gameCards }
+    //     </div>
+    // )
 }
 
 export default GameSearch

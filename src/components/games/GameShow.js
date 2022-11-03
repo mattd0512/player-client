@@ -11,6 +11,12 @@ const backgroundCSS = {
     justifyContent: 'center'
 }
 
+const cardHeader = {
+    fontFamily: 'Bungee Inline',
+    // fontWeight: 'bold',
+    fontSize: '200px'
+}
+
 const cardBody = {
     width: '100%',
     height: '100%'
@@ -96,12 +102,13 @@ const GameShow = ({ user, msgAlert }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header><h3>{ game.name }</h3></Card.Header>
+                <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
+                <Card.Img variant="top" src={game.image} />
                 <Card.Body>
                     <Card.Text>
-                        <div style={cardBody}>
+                        {/* <div style={cardBody}>
                         <img src={ game.image } style={imageDisplay}/><br/><br/>
-                        </div>
+                        </div> */}
                         <div>
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>
