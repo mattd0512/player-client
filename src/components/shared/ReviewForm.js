@@ -11,8 +11,8 @@ const ReviewForm = (props) => {
                 <Form.Label>Leave a review:</Form.Label>
                 <Form.Control 
                     placeholder="Tell us what you think!"
-                    name="review"
-                    id="review"
+                    comment="comment"
+                    id="comment"
                     value= { review.comment }
                     onChange={ handleChange }
                 />

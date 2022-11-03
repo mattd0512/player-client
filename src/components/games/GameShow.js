@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card } from 'react-bootstrap'
+import { Container, Card, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
+import NewReviewModal from '../reviews/NewReviewModal'
+import ShowReview from '../reviews/ShowReview'
+import EditReviewModal from '../reviews/EditReviewModal'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -55,31 +58,19 @@ const imageDisplay = {
     width: '90%'
 }
 
-const reviewCSS = {
-    width: 420,
-    height: 400,
-    justifyContent: 'flex-end',
-    marginLeft: '430px',
-    marginTop: '-450px',
-    marginBottom: '50px',
-    borderRadius: '2.5%'
-}
-
-const reviewsCSS = {
-    width: 420,
-    height: 400,
-    justifyContent: 'flex-end',
-    marginLeft: '950px',
-    marginTop: '-450px',
-    marginBottom: '50px',
-    borderRadius: '2.5%'
+const cardContainerLayout = {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
 }
 
 const GameShow = ({ user, msgAlert }) => {
 
     const [game, setGame] = useState(null)
-
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
     const { apiId } = useParams()
+    const [reviewModalShow, setReviewModalShow] = useState(false)
 
     useEffect(() => {
         gameShow(user, apiId)
@@ -100,6 +91,22 @@ const GameShow = ({ user, msgAlert }) => {
                 })
             })
     }, [])
+
+    // let reviewCards
+    // if (game) {
+    //     if (game.reviews.length > 0) {
+    //         reviewCards = game.reviews.map(review => (
+    //             <ShowReview 
+    //                 key={review._id}
+    //                 review={review}
+    //                 game={game}
+    //                 user={user}
+    //                 msgAlert={msgAlert}
+    //                 triggerRefresh={() => setUpdated(prev => !prev)}
+    //             />
+    //         ))
+    //     }
+    // }
 
 
     if (!game) {
@@ -135,16 +142,30 @@ const GameShow = ({ user, msgAlert }) => {
                     </Card.Text>
                 </Card.Body>
                 </Card>
-                {/* <div>
-                    <Card style={reviewCSS}>
-                        <GameReview />
-                    </Card>
-                </div>
-                <div>
-                    <Card style={reviewsCSS}>
-                        <ReviewSection />
-                    </Card>
-                </div> */}
+                <Card>
+                    <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
+                        Write {game.name} a review!
+                    </Button>
+                </Card>
+            {/* <Container style={cardContainerLayout}>
+                { reviewCards }
+            </Container> */}
+            <EditReviewModal 
+                user={user}
+                game={game}
+                show={editModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setEditModalShow(false)}
+            />
+            <NewReviewModal 
+                user={user}
+                game={game}
+                show={reviewModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setReviewModalShow(false)}
+            />
             </Container>
         </div>
         </>

@@ -2,15 +2,30 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 
-export const reviewCreate = (data, user) => {
+export const createReview = (user, gameId) => {
     return axios({
         method: 'POST',
-        url: apiUrl + '/games',
-        data: {
-            game: data,
-        },
-        headers: {
-            Authorization: `Token token=${user.token}`,
-        },
+        url: apiUrl + `/reviews/:${gameId}`,
     })
+}
+
+export const updateReview = (user, data, id) => {
+	return axios({
+		url: apiUrl + '/reviews/' + id,
+		method: 'PATCH',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+		review: { data }
+	})
+}
+
+export const deleteReview = (user, id) => {
+	return axios({
+		url: apiUrl + '/reviews/' + id,
+		method: 'DELETE',
+		headers: {
+			Authorization: `Token token=${user.token}`,
+		}
+	})
 }
