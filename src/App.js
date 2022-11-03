@@ -22,6 +22,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
 import GameSearchResults from './components/games/GameSearchResults'
 import Search from './components/Search'
+import MyProfile from './components/profiles/MyProfile'
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
+
 
   useEffect(() => {
     const newSocket = io(`http://${window.location.hostname}:3000/chat`);
@@ -100,7 +102,13 @@ const App = () => {
 		<Route
             path='/games/search/:name'
             element={
-                <GameSearchResults msgAlert={msgAlert} user={user} />
+                <GameSearchResults msgAlert={msgAlert} user={user}/>
+              }
+        />
+        <Route
+            path='/my-profile'
+            element={
+                <MyProfile msgAlert={msgAlert} user={user}  setUser={setUser}/>
               }
         />
 		     <Route

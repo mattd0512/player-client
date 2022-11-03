@@ -47,8 +47,6 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
-	</div>
-	</>
 )
 
 const unauthenticatedOptions = (

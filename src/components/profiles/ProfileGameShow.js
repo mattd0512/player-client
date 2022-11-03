@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { Container, Card, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
-import { FiBookmark } from "react-icons/fi"
+import apiUrl from '../../apiConfig'
+import { removeFromCollection } from '../../api/profile'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -13,9 +14,9 @@ const backgroundCSS = {
 }
 
 const cardHeader = {
-    fontFamily: 'Rubik',
+    fontFamily: 'Bungee Inline',
     // fontWeight: 'bold',
-    // fontSize: '10px'
+    fontSize: '200px'
 }
 
 const cardBody = {
@@ -34,8 +35,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '25rem',
-    // height: '35rem',
+    width: '20rem',
+    height: '35rem',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -52,29 +53,55 @@ const findingResult = {
 }
 
 const imageDisplay = {
-    // height: '70%',
-    width: '20rem',
-    alignSelf: 'center'
+    height: '90%',
+    width: '90%'
 }
 
-const GameShow = ({ user, msgAlert }) => {
-
+const GameShow = ({ user, msgAlert, gameId, setUser }) => {
+    
     const [game, setGame] = useState(null)
 
-    const { apiId } = useParams()
+    const navigate = useNavigate()
+    // let { apiId } = useParams()
 
     // if (gameId) {
     //     apiId  = gameId
     // } 
-    console.log(apiId)
+    // console.log(apiId)
+    const removeFromMyLibrary = () => {
+        removeFromCollection(user, gameId)
+        .then((res) => {
+            console.log('here is a res', res)
+            setUser(res.data.user)})
+        .then(() => {
+            console.log('user after delete', user)
+            // console.log('res user', res.user)
+            msgAlert({
+                heading: 'Success',
+                message: 'Removed game from your library',
+                variant: 'success'
+            })
+            
+        })
+        
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Failed to remove game from your Library' + error,
+                variant: 'danger'
+            })
+        })
+    }
+
+
     useEffect(() => {
-        gameShow(user, apiId)
+        gameShow(user, gameId)
             .then((res) => {
                 console.log(res.data.results)
                 setGame({
                     name: res.data.results.name,
                     description: res.data.results.deck,
-                    image: res.data.results.image.original_url
+                    image: res.data.results.image.original_url,
                 })
                 // setGame(res.data.results.name)
             })
@@ -86,21 +113,6 @@ const GameShow = ({ user, msgAlert }) => {
                 })
             })
     }, [])
-
-    const [currentValue, setCurrentValue] = React.useState(0)
-    const [hoverValue, setHoverValue] = React.useState(undefined)
-
-    const handleClick = value => {
-        setCurrentValue(value)
-    }
-
-    const handleMouseOver = value => {
-        setHoverValue(value)
-    }
-
-    const handleMouseLeave = () => {
-        setHoverValue(undefined)
-    }
 
 
     if (!game) {
@@ -123,8 +135,8 @@ const GameShow = ({ user, msgAlert }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header style={cardHeader}><h4>{ game.name }</h4></Card.Header>
-                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
+                <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
+                <Card.Img variant="top" src={game.image} />
                 <Card.Body>
                     <Card.Text>
                         {/* <div style={cardBody}>
@@ -134,8 +146,10 @@ const GameShow = ({ user, msgAlert }) => {
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>
                     </Card.Text>
-                    <FiBookmark/>
                 </Card.Body>
+                <Card.Footer>
+                    <Button onClick={() => removeFromMyLibrary()} className ="btn-success">Remove from Library</Button>
+                </Card.Footer>
                 </Card>
             </Container>
         </div>
