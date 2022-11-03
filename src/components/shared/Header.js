@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
@@ -8,7 +9,15 @@ const linkStyle = {
     color: 'white',
     textDecoration: 'none',
 	fontFamily: 'Bungee Inline',
+	fontSize: '13px'
 	// fontWeight: 'bold'
+}
+
+const logoStyle = {
+    color: 'white',
+    textDecoration: 'none',
+	fontFamily: 'Bungee Inline',
+	fontSize: '20px'
 }
 
 const headerStyle = {
@@ -38,13 +47,6 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
-        <Nav.Link>
-			<Link to='/my-profile' style={linkStyle} className='m-2'>
-				My Profile
-			</Link>
-		</Nav.Link>
-		</div>
-	</>
 )
 
 const unauthenticatedOptions = (
@@ -53,13 +55,14 @@ const unauthenticatedOptions = (
 		    <Link to='sign-up' style={linkStyle} className='m-2'>Create Account</Link>
         </Nav.Link>
         <Nav.Link>
-		    <Link to='sign-in' style={linkStyle} className='m-2'>Sign In</Link>
+		    <Link to='sign-in' style={linkStyle} className='m-2'>Login</Link>
         </Nav.Link>
 	</>
 )
 
 const alwaysOptions = (
 	<>
+
 		<Nav.Item>
 			<Search/>
 		</Nav.Item>
@@ -67,9 +70,10 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
+	
 	<Navbar style={ headerStyle } variant='dark' expand='md'>
 		<Navbar.Brand style={ appLogo }>
-            <Link to='/' style={linkStyle}>
+            <Link to='/' style={logoStyle}>
                 GameShare
             </Link>
         </Navbar.Brand>
@@ -79,11 +83,19 @@ const Header = ({ user }) => (
 				{user && (
 					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
 				)}
-				{alwaysOptions}
+				{/* {alwaysOptions}
+				{user ? authenticatedOptions : unauthenticatedOptions} */}
+			</Nav>
+			<Container fluid='md'>
+			<Nav className='justify-content-end'>
+				{/* {alwaysOptions} */}
+				<Search/>
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
+			</Container>
 		</Navbar.Collapse>
 	</Navbar>
+	
 )
 
 export default Header

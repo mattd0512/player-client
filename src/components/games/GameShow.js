@@ -3,6 +3,7 @@ import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
+import { FiBookmark } from "react-icons/fi"
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -12,9 +13,9 @@ const backgroundCSS = {
 }
 
 const cardHeader = {
-    fontFamily: 'Bungee Inline',
+    fontFamily: 'Rubik',
     // fontWeight: 'bold',
-    fontSize: '200px'
+    // fontSize: '10px'
 }
 
 const cardBody = {
@@ -33,8 +34,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '20rem',
-    height: '35rem',
+    width: '25rem',
+    // height: '35rem',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -51,8 +52,9 @@ const findingResult = {
 }
 
 const imageDisplay = {
-    height: '90%',
-    width: '90%'
+    // height: '70%',
+    width: '20rem',
+    alignSelf: 'center'
 }
 
 const GameShow = ({ user, msgAlert }) => {
@@ -85,6 +87,21 @@ const GameShow = ({ user, msgAlert }) => {
             })
     }, [])
 
+    const [currentValue, setCurrentValue] = React.useState(0)
+    const [hoverValue, setHoverValue] = React.useState(undefined)
+
+    const handleClick = value => {
+        setCurrentValue(value)
+    }
+
+    const handleMouseOver = value => {
+        setHoverValue(value)
+    }
+
+    const handleMouseLeave = () => {
+        setHoverValue(undefined)
+    }
+
 
     if (!game) {
         return (
@@ -106,8 +123,8 @@ const GameShow = ({ user, msgAlert }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
-                <Card.Img variant="top" src={game.image} />
+                <Card.Header style={cardHeader}><h4>{ game.name }</h4></Card.Header>
+                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
                 <Card.Body>
                     <Card.Text>
                         {/* <div style={cardBody}>
@@ -117,6 +134,7 @@ const GameShow = ({ user, msgAlert }) => {
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>
                     </Card.Text>
+                    <FiBookmark/>
                 </Card.Body>
                 </Card>
             </Container>
