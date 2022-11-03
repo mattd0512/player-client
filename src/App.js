@@ -92,10 +92,6 @@ const App = () => {
 		<Route
             path='/games/:apiId'
             element={
-<<<<<<< HEAD
-                <GameShow msgAlert={msgAlert} user={user} />}
-		/>
-=======
                 <GameShow msgAlert={msgAlert} user={user} />
               }
         />
@@ -105,13 +101,11 @@ const App = () => {
                 <GameSearchResults msgAlert={msgAlert} user={user} />
               }
         />
-		     <Route
+		     {/* <Route
             path='/reviews'
             element={
                 <GameReview />}
-
-          />
->>>>>>> 0a761d8d429c59209d5d2a830f20a37a0b16eaa9
+		 /> */}
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

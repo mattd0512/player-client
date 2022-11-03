@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
-<<<<<<< HEAD
-import GameReview from '../../GameReview'
-import ReviewSection from '../../ReviewSection'
-=======
 import Spinner from 'react-bootstrap/Spinner'
->>>>>>> 0a761d8d429c59209d5d2a830f20a37a0b16eaa9
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -140,7 +135,7 @@ const GameShow = ({ user, msgAlert }) => {
                     </Card.Text>
                 </Card.Body>
                 </Card>
-                <div>
+                {/* <div>
                     <Card style={reviewCSS}>
                         <GameReview />
                     </Card>
@@ -149,7 +144,7 @@ const GameShow = ({ user, msgAlert }) => {
                     <Card style={reviewsCSS}>
                         <ReviewSection />
                     </Card>
-                </div>
+                </div> */}
             </Container>
         </div>
         </>
