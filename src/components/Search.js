@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+import { gameSearchResults } from '../api/game'
 
 const Search = () => {
+    const [name, setName] = useState('')
+
+    const searchGame = (e) => {
+        e.preventDefault()
+      
+        console.log(name)
+        gameSearchResults('user', name)
+            .then(res => {
+                console.log('hello',res)
+            })
+    
+    }
     return (
     <div>
-    <form action="/games/search/" method="get">
+    <form onSubmit={searchGame}>
         <label htmlFor="header-search">
             <span className="visually-hidden">Search all games</span>
         </label>
@@ -14,7 +26,9 @@ const Search = () => {
             type="text"
             id="header-search"
             placeholder="Enter title here..."
-            name="s" 
+            name="name"
+            value={name}
+            onChange={e => setName(e.target.value)} 
         />
         <button type="submit">Find game</button>
     </form>
