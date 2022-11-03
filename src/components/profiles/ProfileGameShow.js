@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { Container, Card, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
+import apiUrl from '../../apiConfig'
+import { removeFromCollection } from '../../api/profile'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -55,24 +57,51 @@ const imageDisplay = {
     width: '90%'
 }
 
-const GameShow = ({ user, msgAlert }) => {
-
+const GameShow = ({ user, msgAlert, gameId, setUser }) => {
+    
     const [game, setGame] = useState(null)
 
-    const { apiId } = useParams()
+    const navigate = useNavigate()
+    // let { apiId } = useParams()
 
     // if (gameId) {
     //     apiId  = gameId
     // } 
-    console.log(apiId)
+    // console.log(apiId)
+    const removeFromMyLibrary = () => {
+        removeFromCollection(user, gameId)
+        .then((res) => {
+            console.log('here is a res', res)
+            setUser(res.data.user)})
+        .then(() => {
+            console.log('user after delete', user)
+            // console.log('res user', res.user)
+            msgAlert({
+                heading: 'Success',
+                message: 'Removed game from your library',
+                variant: 'success'
+            })
+            
+        })
+        
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Failed to remove game from your Library' + error,
+                variant: 'danger'
+            })
+        })
+    }
+
+
     useEffect(() => {
-        gameShow(user, apiId)
+        gameShow(user, gameId)
             .then((res) => {
                 console.log(res.data.results)
                 setGame({
                     name: res.data.results.name,
                     description: res.data.results.deck,
-                    image: res.data.results.image.original_url
+                    image: res.data.results.image.original_url,
                 })
                 // setGame(res.data.results.name)
             })
@@ -118,6 +147,9 @@ const GameShow = ({ user, msgAlert }) => {
                         </div>
                     </Card.Text>
                 </Card.Body>
+                <Card.Footer>
+                    <Button onClick={() => removeFromMyLibrary()} className ="btn-success">Remove from Library</Button>
+                </Card.Footer>
                 </Card>
             </Container>
         </div>
