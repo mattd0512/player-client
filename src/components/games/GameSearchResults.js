@@ -58,7 +58,7 @@ const GameSearch = ({ user, msgAlert }) => {
     useEffect(() => {
         gameSearchResults(user, name)
             .then((res) => {
-                // console.log(res.data.results.name)
+                console.log(res.data.results.name)
                 setAllGames({
                     name: res.data.results[0].name,
                     // description: res.data.results.deck,

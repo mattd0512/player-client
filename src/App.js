@@ -21,7 +21,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
 import GameSearchResults from './components/games/GameSearchResults'
-import Search from './components/Search'
+// import Search from './components/Search'
 import MyProfile from './components/profiles/MyProfile'
 
 
@@ -128,19 +128,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-				<div className="App">
-      				<header className="app-header">
-        			 React Chat
-      				</header>
-      				{ socket ? (
-        			<div className="chat-container">
-         				<Messages socket={socket} />
-          				<MessageInput socket={socket} />
-        			</div>
-      			) : (
-        			<div>Not Connected</div>
-      				)}
-    			</div>
+				
 			</Fragment>	
 		);
 }
