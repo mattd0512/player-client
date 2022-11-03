@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
+<<<<<<< HEAD
 import GameReview from '../../GameReview'
 import ReviewSection from '../../ReviewSection'
+=======
+import Spinner from 'react-bootstrap/Spinner'
+>>>>>>> 0a761d8d429c59209d5d2a830f20a37a0b16eaa9
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -12,9 +16,19 @@ const backgroundCSS = {
     justifyContent: 'center'
 }
 
+const cardHeader = {
+    fontFamily: 'Bungee Inline',
+    // fontWeight: 'bold',
+    fontSize: '200px'
+}
+
 const cardBody = {
     width: '100%',
     height: '100%'
+}
+
+const spinnerCSS = {
+    marginLeft: '15%',
 }
 
 const boldText = {
@@ -92,13 +106,20 @@ const GameShow = ({ user, msgAlert }) => {
             })
     }, [])
 
+
     if (!game) {
         return (
-        <>
-        <Container style={findingResult}>
-            <p>Finding game...</p>
-        </Container>
-        </>
+            <>
+            <div style={backgroundCSS}>
+            <Container style={findingResult}>
+                <p>Finding game</p>
+                <p>     
+                <Spinner animation='border' style={spinnerCSS}> 
+                </Spinner>
+                </p>
+            </Container>
+            </div>
+            </>
     )}
 
     return (
@@ -106,12 +127,13 @@ const GameShow = ({ user, msgAlert }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header><h3>{ game.name }</h3></Card.Header>
+                <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
+                <Card.Img variant="top" src={game.image} />
                 <Card.Body>
                     <Card.Text>
-                        <div style={cardBody}>
+                        {/* <div style={cardBody}>
                         <img src={ game.image } style={imageDisplay}/><br/><br/>
-                        </div>
+                        </div> */}
                         <div>
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>

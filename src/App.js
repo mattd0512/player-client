@@ -19,7 +19,8 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
-// import GameSearchResults from './components/games/GameSearchResults'
+import GameSearchResults from './components/games/GameSearchResults'
+import Search from './components/Search'
 
 
 
@@ -91,8 +92,26 @@ const App = () => {
 		<Route
             path='/games/:apiId'
             element={
+<<<<<<< HEAD
                 <GameShow msgAlert={msgAlert} user={user} />}
 		/>
+=======
+                <GameShow msgAlert={msgAlert} user={user} />
+              }
+        />
+		<Route
+            path='/games/search/:name'
+            element={
+                <GameSearchResults msgAlert={msgAlert} user={user} />
+              }
+        />
+		     <Route
+            path='/reviews'
+            element={
+                <GameReview />}
+
+          />
+>>>>>>> 0a761d8d429c59209d5d2a830f20a37a0b16eaa9
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
