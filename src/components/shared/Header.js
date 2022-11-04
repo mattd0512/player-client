@@ -35,7 +35,7 @@ const unauthenticatedCSS = {
 }
 
 const authenticatedOptions = (
-	
+	<>
 	<div>
 		<Nav.Link>
 			<Link to='my-profile' style={linkStyle} className='m-2'>
@@ -47,12 +47,8 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
-<<<<<<< HEAD
 	</div>
 	</>
-=======
-	</div>	
->>>>>>> refs/remotes/origin/main
 )
 
 const unauthenticatedOptions = (
