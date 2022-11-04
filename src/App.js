@@ -2,10 +2,9 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import io from 'socket.io-client'
-import Messages from './Messages'
-import MessageInput from './MessageInput'
-import GameReview from './GameReview'
+// import io from 'socket.io-client'
+// import Messages from './Messages'
+// import MessageInput from './MessageInput'
 
 import './App.css';
 
@@ -21,7 +20,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
 import GameSearchResults from './components/games/GameSearchResults'
-import Search from './components/Search'
+// import Search from './components/Search'
 import MyProfile from './components/profiles/MyProfile'
 
 
@@ -33,12 +32,17 @@ const App = () => {
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
 
+//   useEffect(() => {
+//     const newSocket = io(`http://${window.location.hostname}:3000/chat`);
+//     setSocket(newSocket);
+//     return () => newSocket.close();
+//   }, [setSocket]);
 
-  useEffect(() => {
-    const newSocket = io(`http://${window.location.hostname}:3000/chat`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
+//   useEffect(() => {
+//     const newSocket = io(`http://${window.location.hostname}:3000/chat`);
+//     setSocket(newSocket);
+//     return () => newSocket.close();
+//   }, [setSocket]);
 
  
 
@@ -92,7 +96,6 @@ const App = () => {
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
           />
-
 		<Route
             path='/games/:apiId'
             element={
@@ -111,12 +114,6 @@ const App = () => {
                 <MyProfile msgAlert={msgAlert} user={user}  setUser={setUser}/>
               }
         />
-		     <Route
-            path='/reviews'
-            element={
-                <GameReview />}
-
-          />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
@@ -128,7 +125,7 @@ const App = () => {
 						deleteAlert={deleteAlert}
 					/>
 				))}
-				<div className="App">
+				{/* <div className="App">
       				<header className="app-header">
         			 React Chat
       				</header>
@@ -140,7 +137,8 @@ const App = () => {
       			) : (
         			<div>Not Connected</div>
       				)}
-    			</div>
+    			</div> */}
+				
 			</Fragment>	
 		);
 }

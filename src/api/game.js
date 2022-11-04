@@ -41,6 +41,14 @@ export const gameShow = (user, apiId) => {
 	})
 }
 
+// local game show
+export const localGameShow = (user, apiId) => {
+	return axios({
+		method: 'GET',
+		url: apiUrl + '/games/library/' + apiId
+	})
+}
+
 // game update
 export const gameUpdate = (data, user, id) => {
 	return axios({

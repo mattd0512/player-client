@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card } from 'react-bootstrap'
+import { Container, Card, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
 import { FiBookmark } from "react-icons/fi"
+import ReviewShow from '../reviews/ReviewShow'
+import NewReviewModal from '../reviews/NewReviewModal'
+import EditReviewModal from '../reviews/EditReviewModal'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -57,11 +60,19 @@ const imageDisplay = {
     alignSelf: 'center'
 }
 
+const cardContainerLayout = {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
+}
+
 const GameShow = ({ user, msgAlert }) => {
 
     const [game, setGame] = useState(null)
-
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
     const { apiId } = useParams()
+    const [reviewModalShow, setReviewModalShow] = useState(false)
 
     // if (gameId) {
     //     apiId  = gameId
@@ -137,6 +148,30 @@ const GameShow = ({ user, msgAlert }) => {
                     <FiBookmark/>
                 </Card.Body>
                 </Card>
+                <Card>
+                    <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
+                        Write {game.name} a review!
+                    </Button>
+                </Card>
+            {/* <Container style={cardContainerLayout}>
+                { reviewCards }
+            </Container> */}
+            <EditReviewModal 
+                user={user}
+                game={game}
+                show={editModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setEditModalShow(false)}
+            />
+            <NewReviewModal 
+                user={user}
+                game={game}
+                show={reviewModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setReviewModalShow(false)}
+            />
             </Container>
         </div>
         </>

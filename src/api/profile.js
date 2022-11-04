@@ -22,3 +22,50 @@ export const removeFromCollection = (user, gameId) => {
 		},
 	})
 }
+
+// set as favorite
+export const setAsFavorite = (user, gameId) => {
+	return axios({
+		method: 'PATCH',
+		url: apiUrl + '/games/myfavorite/' + gameId,
+        headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}
+
+export const editPlatform = (user, platform) => {
+	return axios({
+		method: 'PATCH',
+		url: apiUrl + '/platforms/' + platform._id,
+        data: {
+            platform: platform
+        },
+        headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}
+
+export const deletePlatform = (user, platformId) => {
+	return axios({
+		method: 'DELETE',
+		url: apiUrl + '/platforms/' + platformId,
+        headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}
+
+export const addPlatform = (user, platform) => {
+	return axios({
+		method: 'POST',
+		url: apiUrl + '/platforms/',
+        data: {
+            platform: platform
+        },
+        headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}

@@ -35,7 +35,7 @@ const unauthenticatedCSS = {
 }
 
 const authenticatedOptions = (
-	<>
+	
 	<div>
 		<Nav.Link>
 			<Link to='my-profile' style={linkStyle} className='m-2'>
@@ -47,8 +47,12 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
+<<<<<<< HEAD
 	</div>
 	</>
+=======
+	</div>	
+>>>>>>> refs/remotes/origin/main
 )
 
 const unauthenticatedOptions = (
@@ -91,7 +95,7 @@ const Header = ({ user }) => (
 			<Container fluid='md'>
 			<Nav className='justify-content-end'>
 				{/* {alwaysOptions} */}
-				<Search/>
+				<Search user={user}/>
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
 			</Container>
