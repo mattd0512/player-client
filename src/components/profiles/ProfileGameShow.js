@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button, ButtonGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { localGameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
@@ -175,12 +175,14 @@ const GameShow = ({ user, msgAlert, gameId, setUser }) => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button onClick={() => removeFromMyLibrary()} className ="btn-success">Remove from Library</Button>
-                    {user.thumbnail != game.thumbnail?
-                    <Button onClick={() => myFavorite()} className ="btn-success">Set as Profile Pic</Button>
-                    :
-                    null
-                    }
+                    {/* <ButtonGroup> */}
+                        <Button onClick={() => removeFromMyLibrary()} className ="btn-success m-1">Remove from Library</Button>
+                        {user.thumbnail != game.thumbnail?
+                        <Button onClick={() => myFavorite()} className ="btn-success m-1">Set as Profile Pic</Button>
+                        :
+                        null
+                        }
+                    {/* </ButtonGroup> */}
                 </Card.Footer>
                 </Card>
             </Container>

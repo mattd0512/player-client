@@ -15,12 +15,14 @@ const PlatformForm = (props) => {
           id="name"
           value={ platform.name }
           onChange= { handleChange }
+          className="m-1"
         />
         <Form.Select
           aria-label="Platform:"
           name="platform"
           defaultValue={ platform.platform }
           onChange={handleChange}
+          className="m-1"
         >
           <option>Which Platform is this Username For...</option>
           <option value="XBOX Live">XBOX Live</option>

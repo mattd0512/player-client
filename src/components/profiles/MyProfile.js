@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
-import { signIn } from '../../api/auth'
-import messages from '../shared/AutoDismissAlert/messages'
+// import { signIn } from '../../api/auth'
+// import messages from '../shared/AutoDismissAlert/messages'
 
 import ProfileGameShow from './ProfileGameShow'
 // import EditPlatformModal from './EditPlatformModal'
 import PlatformForm from '../shared/PlatformForm'
 
-import Form from 'react-bootstrap/Form'
+// import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Badge, Modal, Container } from 'react-bootstrap'
 
-import apiUrl from '../../apiConfig'
+// import apiUrl from '../../apiConfig'
 import { myProfile, editPlatform, deletePlatform, addPlatform } from '../../api/profile'
 // import { updatePlatform } from '../../api/profile'
 
@@ -39,7 +39,7 @@ const MyProfile = (props) => {
     }
 
     const NewPlatform = () => {
-        setPlatToEdit({})
+        setPlatform({})
         setTimeout(setNewPlatShow(true), 100)
     }
 
@@ -185,7 +185,7 @@ const MyProfile = (props) => {
         <div >
             
             <h3><img src={user.thumbnail}/>Hello, {user.username}</h3>
-            <Button className="btn-sm" onClick={NewPlatform}>Add a Platform</Button>
+            <Button className="btn-sm m-1" onClick={NewPlatform}>Add a Platform Username</Button>
             { user && user.platforms.length > 0?
                 <>
                 <h6>My Gamer Tags:<small><i>(click to edit or remove)</i></small></h6>
