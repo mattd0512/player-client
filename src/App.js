@@ -20,7 +20,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
 import GameSearchResults from './components/games/GameSearchResults'
-import Search from './components/Search'
+// import Search from './components/Search'
 import MyProfile from './components/profiles/MyProfile'
 
 
@@ -138,6 +138,7 @@ const App = () => {
         			<div>Not Connected</div>
       				)}
     			</div> */}
+				
 			</Fragment>	
 		);
 }

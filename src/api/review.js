@@ -1,38 +1,34 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const reviewShow = (user) => {
+// CREATE
+export const createReview = (user, gameId, newReview) => {
 	return axios({
-		method: 'GET',
-		url: `${apiUrl}/reviews/show/id`
-	})
-}
-
-export const createReview = (user, gameId, data) => {
-    return axios({
-        method: 'POST',
-        url: `${apiUrl}/reviews/${gameId}`,
+		url: `${apiUrl}/reviews/${gameId}`,
+		method: 'POST',
+		data: { review: newReview },
 		headers: {
 			Authorization: `Token token=${user.token}`,
 		},
-		review: { data }
-    })
+	})
 }
 
-export const updateReview = (user, data, id) => {
+// UPDATE toy
+export const updateReview = (user, gameId, updatedReview) => {
 	return axios({
-		url: `${apiUrl}/reviews/${id}`,
+		url: `${apiUrl}/reviews/${gameId}/${updatedReview._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
 		},
-		review: { data }
+		data: { review: updatedReview }
 	})
 }
 
-export const deleteReview = (user, id) => {
+// DELETE toy
+export const deleteReview = (user, gameId, reviewId) => {
 	return axios({
-		url: `${apiUrl}/reviews/${id}`,
+		url: `${apiUrl}/reviews/${gameId}/${reviewId}`,
 		method: 'DELETE',
 		headers: {
 			Authorization: `Token token=${user.token}`,

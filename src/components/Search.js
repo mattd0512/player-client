@@ -3,17 +3,14 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { gameSearchResults } from '../api/game'
 
-const Search = () => {
+const Search = ({user}) => {
     const [name, setName] = useState('')
 
     const searchGame = (e) => {
         e.preventDefault()
-      
+        window.location.href = "http://localhost:3000/games/search/" + `${name}`
         console.log(name)
-        gameSearchResults('user', name)
-            .then(res => {
-                console.log('hello',res)
-            })
+      
     
     }
     return (
