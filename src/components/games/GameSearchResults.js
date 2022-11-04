@@ -27,8 +27,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '5rem',
-    height: '15rem',
+    width: '20%',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -58,11 +58,13 @@ const GameSearch = ({ user, msgAlert }) => {
     useEffect(() => {
         gameSearchResults(user, name)
             .then((res) => {
-                console.log(res.data.results.name)
+                // console.log(res.data.results.name)
                 setAllGames({
                     name: res.data.results[0].name,
                     // description: res.data.results.deck,
-                    image: res.data.results[0].image.original_url
+                    image: res.data.results[0].image.original_url,
+                  
+                   
                 })
             })
             .catch((error) => {
@@ -111,6 +113,7 @@ const GameSearch = ({ user, msgAlert }) => {
                     <Card.Text>
                         <div style={cardBody}>
                         <img src={ allGames.image } style={imageDisplay}/><br/><br/>
+                        <button>View  {allGames.name}</button>
                         </div>
                     </Card.Text>
                 </Card.Body>
