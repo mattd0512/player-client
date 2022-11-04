@@ -38,8 +38,8 @@ const authenticatedOptions = (
 	<>
 	<div>
 		<Nav.Link>
-			<Link to='change-password' style={linkStyle} className='m-2'>
-				Change Password
+			<Link to='my-profile' style={linkStyle} className='m-2'>
+				My Profile
 			</Link>
 		</Nav.Link>
 		<Nav.Link>
