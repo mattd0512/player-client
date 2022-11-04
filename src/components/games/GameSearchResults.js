@@ -3,7 +3,6 @@ import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameSearchResults } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
-import { Link } from 'react-router-dom'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -50,18 +49,24 @@ const imageDisplay = {
     width: '90%'
 }
 
-
-const GameSearchResults = ({ user, msgAlert }) => {
+const GameSearch = ({ user, msgAlert }) => {
 
     const [allGames, setAllGames] = useState([])
 
-
+    const { name } = useParams()
 
     useEffect(() => {
-        gameSearchResults(user)
-            .then((res) => { 
-                setAllGames(res.data.games)
-                    })
+        gameSearchResults(user, name)
+            .then((res) => {
+                // console.log(res.data.results.name)
+                setAllGames({
+                    name: res.data.results[0].name,
+                    // description: res.data.results.deck,
+                    image: res.data.results[0].image.original_url,
+                  
+                   
+                })
+            })
             .catch((error) => {
                 msgAlert({
                     heading: 'Failure',
@@ -71,22 +76,16 @@ const GameSearchResults = ({ user, msgAlert }) => {
             })
     }, [])
 
-    const gameCards =  allGames?.map(game => (
-        <Container className="fluid">
-                <Card style={cardCSS}>
-                <Card.Header><h3>{ game.name }</h3></Card.Header>
-                <Card.Body>
-                    <Card.Text>
-                        <div style={cardBody}>
-                        <img src={ game.original_url } style={imageDisplay}/><br/><br/>
-                        <Link to={ `/games/${game.id}` }>View { game.name }</Link>
-                        </div>
-                    </Card.Text>
-                </Card.Body>
-                </Card>
-            </Container>
-    ))
-
+    // const gameCards = allGames.map(game => (
+    //     <Card>
+    //         <Card.Header>{ game.name }</Card.Header>
+    //         <Card.Body>
+    //             <Card.Text>
+    //                 <p>{game.name}</p>
+    //             </Card.Text>
+    //         </Card.Body>
+    //     </Card>
+    // ))
 
 
     if (!allGames) {
@@ -105,12 +104,31 @@ const GameSearchResults = ({ user, msgAlert }) => {
     )}
 
     return (
-        <div>
-        {gameCards }
-     
+        <>
+        <div style={backgroundCSS}>
+			<Container className="fluid">
+                <Card style={cardCSS}>
+                <Card.Header><h3>{ allGames.name }</h3></Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        <div style={cardBody}>
+                        <img src={ allGames.image } style={imageDisplay}/><br/><br/>
+                        <button>View  {allGames.name}</button>
+                        </div>
+                    </Card.Text>
+                </Card.Body>
+                </Card>
+            </Container>
         </div>
+        </>
     )
+
+    // return (
+    //     <div className='container-md'>
+    //         {/* <ul>{allPetsJSX}</ul> */}
+    //         { gameCards }
+    //     </div>
+    // )
 }
 
-export default GameSearchResults	
-
+export default GameSearch
