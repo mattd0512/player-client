@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { Navigate } from 'react-router-dom'
 import { gameSearchResults } from '../api/game'
 
 const Search = ({user}) => {
@@ -8,7 +9,8 @@ const Search = ({user}) => {
 
     const searchGame = (e) => {
         e.preventDefault()
-        window.location.href = "http://localhost:3000/games/search/" + `${name}`
+        // window.location.href = "http://localhost:3000/games/search/" + `${name}`
+        Navigate(`/games/search/${name}`)
         console.log(name)
       
     

@@ -5,39 +5,10 @@ const HomeContent = () => {
     return (
     <>
    <div class="container text-center">
-  <div class="row align-items-start">
-    <div class="card">
-      One of three cardumns
-    </div>
-    <div class="card">
-      One of three cardumns
-    </div>
-    <div class="card">
-      One of three cardumns
-    </div>
-  </div>
-  <div class="row align-items-center">
-    <div class="card">
-      One of three cardumns
-    </div>
-    <div class="card">
-      One of three cardumns
-    </div>
-    <div class="card">
-      One of three cardumns
-    </div>
-  </div>
-  <div class="row align-items-end">
-    <div class="card">
-      One of three cardumns
-    </div>
-    <div class="card">
-      One of three cardumns
-    </div>
-    <div class="card">
-      One of three cardumns
-    </div>
-  </div>
+
+     <img src='https://d3f7q2msm2165u.cloudfront.net/aaa-content/user/files/QoD/6a9a7b6b5c14e8ab8e7603915aeac8b3.png' alt="Logo" style= {{float : 'left', width : '100%'}}/>
+
+
 </div>
     
     </>
