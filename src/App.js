@@ -19,7 +19,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import GameShow from './components/games/GameShow'
-import GameSearchResults from './components/games/GameSearchResults'
+import GameSearch from './components/games/GameSearchResults'
 // import Search from './components/Search'
 import MyProfile from './components/profiles/MyProfile'
 
@@ -31,6 +31,7 @@ const App = () => {
   const [socket, setSocket] = useState(null);
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
+  const [renderSearch, setRenderSearch] = useState(false)
 
 //   useEffect(() => {
 //     const newSocket = io(`http://${window.location.hostname}:3000/chat`);
@@ -105,7 +106,7 @@ const App = () => {
 		<Route
             path='/games/search/:name'
             element={
-                <GameSearchResults msgAlert={msgAlert} user={user}/>
+                <GameSearch msgAlert={msgAlert} user={user} renderSearch={renderSearch} setRenderSearch={setRenderSearch}/>
               }
         />
         <Route
