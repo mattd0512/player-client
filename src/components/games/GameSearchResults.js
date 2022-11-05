@@ -28,8 +28,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '5rem',
-    height: '15rem',
+    width: '20%',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -64,7 +64,7 @@ const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
     useEffect(() => {
         gameSearchResults(user, name)
             .then((res) => {
-                
+
                 console.log(res.data.results)
                 // setAllGames({
                 //     name: res.data.results[0].name,
@@ -135,7 +135,9 @@ const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
         // </div>
         // </>
         <>
+
         {allGames}
+
         </>
     )
 

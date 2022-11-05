@@ -52,12 +52,14 @@ const authenticatedOptions = (
 				Sign Out
 			</Link>
 		</Nav.Link>
+
 		<Nav.Link>
 			<Link to='games/22975' style={linkStyle} className='m-2'>
 				View Game
 			</Link>
 		</Nav.Link>
 	</div>	
+
 )
 
 const unauthenticatedOptions = (

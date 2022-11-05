@@ -1,0 +1,47 @@
+.backgroundCSS  {
+    background-color: rgb(212, 212, 212),
+   
+}
+
+ .cardHeader  {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 200px;
+}
+
+ .cardBody  {
+    width: 100%;
+    height: 100%;
+}
+
+ .spinnerCSS  {
+    margin-left: 15%;
+}
+
+ .boldText  {
+    font-weight: bold;
+}
+
+ .cardCSS  {
+    margin-top: 20%;
+    margin-bottom: 20px;
+    width: 20rem;
+    height: 35rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-radius: 2.5%;
+}
+
+ .findingResult  {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    margin-top: 30%;
+    font-size: 200%;
+    color: rgb(241, 50, 50);
+}
+
+ .imageDisplay  {
+    height: 90%;
+    width: 90%;
+}
