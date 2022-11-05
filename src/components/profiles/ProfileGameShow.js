@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button, ButtonGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import { gameShow } from '../../api/game'
+import { localGameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
 import apiUrl from '../../apiConfig'
-import { removeFromCollection } from '../../api/profile'
+import { removeFromCollection, setAsFavorite } from '../../api/profile'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -72,9 +72,10 @@ const GameShow = ({ user, msgAlert, gameId, setUser }) => {
         removeFromCollection(user, gameId)
         .then((res) => {
             console.log('here is a res', res)
-            setUser(res.data.user)})
+            setUser(res.data.user)
+        })
         .then(() => {
-            console.log('user after delete', user)
+            // console.log('user after delete', user)
             // console.log('res user', res.user)
             msgAlert({
                 heading: 'Success',
@@ -93,15 +94,41 @@ const GameShow = ({ user, msgAlert, gameId, setUser }) => {
         })
     }
 
+    const myFavorite = () => {
+        setAsFavorite(user, gameId)
+        .then((res) => {
+            setUser(res.data.user)
+        })
+        .then(() => {
+            // console.log('user after delete', user)
+            // console.log('res user', res.user)
+            msgAlert({
+                heading: 'Success',
+                message: 'Set Game as Favorite',
+                variant: 'success'
+            })
+            
+        })
+        
+        .catch((error) => {
+            msgAlert({
+                heading: 'Failure',
+                message: 'Failed to set Game as Favorite' + error,
+                variant: 'danger'
+            })
+        })
+    }
+    
 
     useEffect(() => {
-        gameShow(user, gameId)
+        localGameShow(user, gameId)
             .then((res) => {
-                console.log(res.data.results)
+                console.log(res)
                 setGame({
-                    name: res.data.results.name,
-                    description: res.data.results.deck,
-                    image: res.data.results.image.original_url,
+                    name: res.data.game.title,
+                    description: res.data.game.description,
+                    image: res.data.game.imgUrl,
+                    thumbnail: res.data.game.thumbnailUrl
                 })
                 // setGame(res.data.results.name)
             })
@@ -148,7 +175,14 @@ const GameShow = ({ user, msgAlert, gameId, setUser }) => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button onClick={() => removeFromMyLibrary()} className ="btn-success">Remove from Library</Button>
+                    {/* <ButtonGroup> */}
+                        <Button onClick={() => removeFromMyLibrary()} className ="btn-success m-1">Remove from Library</Button>
+                        {user.thumbnail != game.thumbnail?
+                        <Button onClick={() => myFavorite()} className ="btn-success m-1">Set as Profile Pic</Button>
+                        :
+                        null
+                        }
+                    {/* </ButtonGroup> */}
                 </Card.Footer>
                 </Card>
             </Container>

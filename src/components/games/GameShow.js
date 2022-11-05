@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react' 
-import { Container, Card } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { Container, Card, Button } from 'react-bootstrap'
+import { useParams, useNavigate } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
 import { FiBookmark } from "react-icons/fi"
+import ReviewShow from '../reviews/ReviewShow'
+import NewReviewModal from '../reviews/NewReviewModal'
+import EditReviewModal from '../reviews/EditReviewModal'
+import { getReview } from '../../api/review'
+import { addToCollection } from '../../api/profile'
+
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -57,16 +63,43 @@ const imageDisplay = {
     alignSelf: 'center'
 }
 
-const GameShow = ({ user, msgAlert }) => {
+const cardContainerLayout = {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
+}
+
+const GameShow = ({ user, msgAlert, setUser }) => {
 
     const [game, setGame] = useState(null)
-
+    const [reviews, setReviews] = useState(null)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [updated, setUpdated] = useState(false)
     const { apiId } = useParams()
+    const [reviewModalShow, setReviewModalShow] = useState(false)
 
-    // if (gameId) {
-    //     apiId  = gameId
-    // } 
-    console.log(apiId)
+    const navigate = useNavigate()
+    
+    const AddToCollection = () => {
+        addToCollection(user, game.id)
+            .then((res) => setUser(res.data.user))
+            .then(() =>
+				msgAlert({
+					heading: 'Game Added',
+					message: `${game.name} has been added to your collection.`,
+					variant: 'success',
+				})
+			)
+            .catch(() => {
+				msgAlert({
+					heading: 'Failed to Add Game',
+					message: 'Failed to add game to your collection.',
+					variant: 'danger',
+				})
+			})
+            
+    }
+
     useEffect(() => {
         gameShow(user, apiId)
             .then((res) => {
@@ -74,7 +107,8 @@ const GameShow = ({ user, msgAlert }) => {
                 setGame({
                     name: res.data.results.name,
                     description: res.data.results.deck,
-                    image: res.data.results.image.original_url
+                    image: res.data.results.image.original_url,
+                    id: res.data.results.id
                 })
                 // setGame(res.data.results.name)
             })
@@ -86,6 +120,16 @@ const GameShow = ({ user, msgAlert }) => {
                 })
             })
     }, [])
+
+
+    useEffect(() => {
+        getReview(user, apiId)
+            .then(res => {
+                console.log('review res',res.data.reviews)
+                setReviews(res.data.reviews)
+            })
+
+    },[updated])
 
     const [currentValue, setCurrentValue] = React.useState(0)
     const [hoverValue, setHoverValue] = React.useState(undefined)
@@ -118,6 +162,24 @@ const GameShow = ({ user, msgAlert }) => {
             </>
     )}
 
+    let reviewCards
+    if (reviews) {
+        if (reviews.length > 0) {
+            // map over the toys
+            // produce one ShowToy component for each of them
+            reviewCards = reviews.map(review => (
+                <ReviewShow 
+                    key={review._id}
+                    review={review}
+                    game={game}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
+
     return (
         <>
         <div style={backgroundCSS}>
@@ -134,9 +196,39 @@ const GameShow = ({ user, msgAlert }) => {
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>
                     </Card.Text>
-                    <FiBookmark/>
+                    
+                        {user.myGames.includes(apiId)?
+                        <><FiBookmark/>In My Library</>
+                        :
+                        <Button onClick={() => AddToCollection()}>
+                            <FiBookmark/>Add To Collection
+                        </Button>
+                        }
+                    
                 </Card.Body>
                 </Card>
+                <div>{reviewCards}</div>
+                <Card>
+                    <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
+                        Write {game.name} a review!
+                    </Button>
+                </Card>
+            <EditReviewModal 
+                user={user}
+                game={game}
+                show={editModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setEditModalShow(false)}
+            />
+            <NewReviewModal 
+                user={user}
+                game={game}
+                show={reviewModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setReviewModalShow(false)}
+            />
             </Container>
         </div>
         </>

@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { Navigate } from 'react-router-dom'
 import { gameSearchResults } from '../api/game'
 
-const Search = ({user}) => {
+const Search = () => {
     const [name, setName] = useState('')
-
+    const navigate = useNavigate()
     const searchGame = (e) => {
         e.preventDefault()
         // window.location.href = "http://localhost:3000/games/search/" + `${name}`
-        Navigate(`/games/search/${name}`)
+        navigate(`/games/search/${name}`)
+
         console.log(name)
       
     

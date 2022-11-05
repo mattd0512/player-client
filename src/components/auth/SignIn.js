@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { TbDots } from 'react-icons';
 import { signIn } from '../../api/auth'
 import messages from '../shared/AutoDismissAlert/messages'
 
@@ -56,7 +56,13 @@ const SignIn = (props) => {
 
     return (
         <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+            <div className='col-sm-10 col-md-4 mx-auto mt-5'>
+                
+                <br></br>
+                <br></br>
+                <br></br>
+                <div>
+                <TbDots/></div>
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
@@ -84,6 +90,8 @@ const SignIn = (props) => {
                     <Button variant='primary' type='submit'>
                         Submit
                     </Button>
+                    <br></br>
+                   
                 </Form>
             </div>
         </div>
