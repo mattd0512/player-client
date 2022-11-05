@@ -102,13 +102,12 @@ const GameShow = ({ user, msgAlert }) => {
             })
     }, [])
 
+
     useEffect(() => {
         getReview(user, apiId)
             .then(res => {
                 console.log('review res',res.data.reviews)
                 setReviews(res.data.reviews)
-
-                
             })
 
     },[updated])
