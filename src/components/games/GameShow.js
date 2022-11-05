@@ -129,6 +129,24 @@ const GameShow = ({ user, msgAlert }) => {
             </>
     )}
 
+    let reviewCards
+    if (game) {
+        if (game.reviews.length > 0) {
+            // map over the toys
+            // produce one ShowToy component for each of them
+            reviewCards = game.reviews.map(review => (
+                <ReviewShow 
+                    key={review._id}
+                    review={review}
+                    game={game}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
+
     return (
         <>
         <div style={backgroundCSS}>
@@ -153,9 +171,6 @@ const GameShow = ({ user, msgAlert }) => {
                         Write {game.name} a review!
                     </Button>
                 </Card>
-            {/* <Container style={cardContainerLayout}>
-                { reviewCards }
-            </Container> */}
             <EditReviewModal 
                 user={user}
                 game={game}

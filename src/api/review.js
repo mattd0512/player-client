@@ -13,7 +13,7 @@ export const createReview = (user, gameId, newReview) => {
 	})
 }
 
-// UPDATE toy
+// UPDATE review
 export const updateReview = (user, gameId, updatedReview) => {
 	return axios({
 		url: `${apiUrl}/reviews/${gameId}/${updatedReview._id}`,
@@ -25,7 +25,7 @@ export const updateReview = (user, gameId, updatedReview) => {
 	})
 }
 
-// DELETE toy
+// DELETE review
 export const deleteReview = (user, gameId, reviewId) => {
 	return axios({
 		url: `${apiUrl}/reviews/${gameId}/${reviewId}`,
