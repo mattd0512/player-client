@@ -75,7 +75,7 @@ const navigate = useNavigate()
         <div style={backgroundCSS}>
 			<Container className="fluid" onClick={() => navigate(`/games/${id}`)}>
                 <Card >
-                <Card.Header><h3>{ name }hello</h3></Card.Header>
+                <Card.Header><h3>{ name }</h3></Card.Header>
                 <Card.Body>
                     <Card.Text>
                         <div style={cardBody}>

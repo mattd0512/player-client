@@ -7,6 +7,7 @@ import { FiBookmark } from "react-icons/fi"
 import ReviewShow from '../reviews/ReviewShow'
 import NewReviewModal from '../reviews/NewReviewModal'
 import EditReviewModal from '../reviews/EditReviewModal'
+import { getReview } from '../../api/review'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -69,10 +70,12 @@ const cardContainerLayout = {
 const GameShow = ({ user, msgAlert }) => {
 
     const [game, setGame] = useState(null)
+    const [reviews, setReviews] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
     const { apiId } = useParams()
     const [reviewModalShow, setReviewModalShow] = useState(false)
+    // const [loadReviews, setLoadReviews] = useState(true)
 
     // if (gameId) {
     //     apiId  = gameId
@@ -85,7 +88,8 @@ const GameShow = ({ user, msgAlert }) => {
                 setGame({
                     name: res.data.results.name,
                     description: res.data.results.deck,
-                    image: res.data.results.image.original_url
+                    image: res.data.results.image.original_url,
+                    id: res.data.results.id
                 })
                 // setGame(res.data.results.name)
             })
@@ -97,6 +101,16 @@ const GameShow = ({ user, msgAlert }) => {
                 })
             })
     }, [])
+
+
+    useEffect(() => {
+        getReview(user, apiId)
+            .then(res => {
+                console.log('review res',res.data.reviews)
+                setReviews(res.data.reviews)
+            })
+
+    },[updated])
 
     const [currentValue, setCurrentValue] = React.useState(0)
     const [hoverValue, setHoverValue] = React.useState(undefined)
@@ -130,11 +144,11 @@ const GameShow = ({ user, msgAlert }) => {
     )}
 
     let reviewCards
-    if (game) {
-        if (game.reviews.length > 0) {
+    if (reviews) {
+        if (reviews.length > 0) {
             // map over the toys
             // produce one ShowToy component for each of them
-            reviewCards = game.reviews.map(review => (
+            reviewCards = reviews.map(review => (
                 <ReviewShow 
                     key={review._id}
                     review={review}
@@ -166,6 +180,7 @@ const GameShow = ({ user, msgAlert }) => {
                     <FiBookmark/>
                 </Card.Body>
                 </Card>
+                <div>{reviewCards}</div>
                 <Card>
                     <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
                         Write {game.name} a review!
