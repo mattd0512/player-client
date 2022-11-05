@@ -62,7 +62,7 @@ const SignIn = (props) => {
                 <br></br>
                 <br></br>
                 <div>
-                <TbDots/></div>
+                </div>
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>

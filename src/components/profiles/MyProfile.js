@@ -16,6 +16,17 @@ import { Badge, Modal, Container } from 'react-bootstrap'
 import { myProfile, editPlatform, deletePlatform, addPlatform } from '../../api/profile'
 // import { updatePlatform } from '../../api/profile'
 
+const thumbnailImg = {
+  borderRadius: '50%',
+  height: '150px'
+}
+
+const cardContainerLayout = {
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'center'
+}
+
 const MyProfile = (props) => {
     console.log('props: ',props)
     const { msgAlert, user, setUser } = props
@@ -188,7 +199,7 @@ const MyProfile = (props) => {
         <>
         <div >
             
-            <h3><img src={user.thumbnail}/>Hello, {user.username}</h3>
+            <h3><img src={user.thumbnail} style={thumbnailImg}/><br></br>Hello, {user.username}</h3 >
             <Button className="btn-sm m-1" onClick={NewPlatform}>Add a Platform Username</Button>
             { user && user.platforms.length > 0?
                 <>
@@ -198,8 +209,8 @@ const MyProfile = (props) => {
                 </>
                 :
                 null
-            }
-            {gameCards}
+            }<div style={ cardContainerLayout }>
+            {gameCards }</div>
             
         </div>
 
