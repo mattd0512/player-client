@@ -12,6 +12,18 @@ export const myProfile = (user) => {
 	})
 }
 
+// add game to collection
+export const addToCollection = (user, gameId) => {
+	return axios({
+		method: 'PATCH',
+		url: apiUrl + '/games/mylibrary/' + gameId,
+        headers: {
+			Authorization: `Token token=${user.token}`,
+		},
+	})
+}
+
+
 // remove from my collection
 export const removeFromCollection = (user, gameId) => {
 	return axios({

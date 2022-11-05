@@ -100,7 +100,7 @@ const App = () => {
 		<Route
             path='/games/:apiId'
             element={
-                <GameShow msgAlert={msgAlert} user={user} />
+                <GameShow msgAlert={msgAlert} user={user} setUser={setUser} />
               }
         />
 		<Route

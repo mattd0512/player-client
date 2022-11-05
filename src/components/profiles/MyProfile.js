@@ -164,6 +164,9 @@ const MyProfile = (props) => {
                 
             ))
         }
+
+        
+
         if (user.myGames.length > 0) {
 
             gameCards = user.myGames.map(game => (
@@ -179,6 +182,7 @@ const MyProfile = (props) => {
             ))
         }
     }
+    
 
     return (
         <>
