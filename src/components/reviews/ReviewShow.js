@@ -10,7 +10,7 @@ const ShowReview = (props) => {
     const [editModalShow, setEditModalShow] = useState(false)
 
     const destroyReview = () => {
-        deleteReview(user, review._id, game._id)
+        deleteReview(user, review._id)
             .then(() => {
                 msgAlert({
                     heading: 'Review deleted!',
@@ -31,13 +31,14 @@ const ShowReview = (props) => {
     return (
         <>
             <Card className="m-2" >
-                <Card.Header>{ review.comment }</Card.Header>
+                <Card.Header>Reviewed By: {review.username}</Card.Header>
                 <Card.Body>
-                    <small>{ review.score }</small><br/>
+                    <h6>Score: { review.score }/5</h6>
+                    { review.comment }
                 </Card.Body>
                 <Card.Footer>
                     { 
-                        user && game.owner && user._id === game.owner._id 
+                        user && review.owner && user._id === review.owner
                         ?
                         <>
                             <Button

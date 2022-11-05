@@ -14,10 +14,10 @@ const EditReviewModal = (props) => {
 
     const handleChange = (e) => {
         setReview(prevReview => {
-            const comment = e.target.comment
+            const name = e.target.name
             let value = e.target.value
 
-            const updatedReview = { [comment]: value }
+            const updatedReview = { [name]: value }
 
             return {
                 ...prevReview, ...updatedReview
@@ -28,7 +28,7 @@ const EditReviewModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        updateReview(user, game._id, review)
+        updateReview(user, review)
             .then(() => handleClose())
             .then(() => {
                 msgAlert({

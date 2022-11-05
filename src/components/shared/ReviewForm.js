@@ -11,19 +11,25 @@ const ReviewForm = (props) => {
                 <Form.Label>Leave a review:</Form.Label>
                 <Form.Control 
                     placeholder="Tell us what you think!"
-                    comment="comment"
+                    name="comment"
                     id="comment"
                     value= { review.comment }
                     onChange={ handleChange }
                 />
-                <Form.Label>Score</Form.Label>
-                <Form.Control 
-                    placeholder=""
+                 <Form.Select
+                    aria-label="game rating"
                     name="score"
-                    id="score"
-                    value= { review.score }
-                    onChange={ handleChange }
-                />
+                    defaultValue={review.score}
+                    onChange={handleChange}
+                >
+                    <option>Open this select menu</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+
+                </Form.Select>
                 <Button type="submit">Submit</Button>
             </Form>
         </Container>

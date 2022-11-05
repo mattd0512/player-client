@@ -4,11 +4,11 @@ import PlatformForm from '../shared/PlatformForm'
 import { updatePlatform } from '../../api/profile'
 
 const EditPlatformModal = (props) => {
-  const { user, handleClose, msgAlert } = props
+  const { user, show, handleClose, msgAlert } = props
 
   const [platform, setPlatform] = useState(props.platform)
 
-    const show = true
+    
 
   const handleChange = (e) => {
     setPlatform(prevPlatform => {
@@ -26,7 +26,7 @@ const EditPlatformModal = (props) => {
   const handleSubmit = (evt) => {
     evt.preventDefault()
     updatePlatform(user, props.platform._id, platform)
-    //   .then(() => handleClose())
+      .then(() => handleClose())
       .then(() => {
         msgAlert({
           heading: 'Success',
