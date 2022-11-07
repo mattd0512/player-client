@@ -31,7 +31,7 @@ const ShowReview = (props) => {
     return (
         <>
             <Card className="m-2" >
-                <Card.Header>Reviewed By: {review.username}</Card.Header>
+                <Card.Header>Reviewed by: {review.username}</Card.Header>
                 <Card.Body>
                     <h6>Score: { review.score }/5</h6>
                     { review.comment }
