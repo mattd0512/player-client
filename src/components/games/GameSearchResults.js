@@ -93,7 +93,7 @@ const GameSearch = ({ user, msgAlert }) => {
         <div style={cardContainerLayout}>
             {allGames}
         </div>
-            {allGames}
+            
         </>
     )
 }
