@@ -55,7 +55,6 @@ const imageDisplay = {
 }
 
 const GameSearchShow = (props) => {
-// console.log('from gameseacrhshow',game)
 const { name, image, id } = props
 const navigate = useNavigate()
 
@@ -77,6 +76,7 @@ const navigate = useNavigate()
     return (
         <>
         <div style={backgroundCSS}>
+            user?
 			<Container className="fluid" onClick={() => navigate(`/games/${id}`)}>
                 <Card style={cardCSS}>
                 <Card.Header style={cardHeader}>

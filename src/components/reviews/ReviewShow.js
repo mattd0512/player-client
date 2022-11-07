@@ -33,7 +33,7 @@ const cardFooter = {
 
 const ShowReview = (props) => {
     const { review, game, user, msgAlert, triggerRefresh } = props
-    console.log('this is the props', props)
+
 
     const [editModalShow, setEditModalShow] = useState(false)
     const navigate = useNavigate()
@@ -89,10 +89,42 @@ const ShowReview = (props) => {
                         </>
                         :
                         null
+            <Card className="m-2" >
+                {review.username != user.username ?
+                    <Card.Header>Reviewed By: {review.username} <Button className='btn-sm btn-success float-end'onClick={() => navigate(`/profile/${review.username}`)}>See {review.username}'s Profile</Button></Card.Header>
+                    :
+                    <Card.Header>Your Review</Card.Header>
+                }
+                <Card.Body>
+                    <h6>Score: {review.score}/5</h6>
+                    {review.comment}
+                </Card.Body>
+                <Card.Footer>
+                    {
+                        user && review.owner && user._id === review.owner
+                            ?
+                            <>
+                                <Button
+                                    className="m-2"
+                                    variant="warning"
+                                    onClick={() => setEditModalShow(true)}
+                                >
+                                    Edit Review
+                                </Button>
+                                <Button
+                                    className="m-2"
+                                    variant="danger"
+                                    onClick={() => destroyReview()}
+                                >
+                                    Delete Review
+                                </Button>
+                            </>
+                            :
+                            null
                     }
                 </Card.Footer>
             </Card>
-            <EditReviewModal 
+            <EditReviewModal
                 user={user}
                 game={game}
                 review={review}

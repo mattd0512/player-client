@@ -36,27 +36,15 @@ const buttonCenter = {
 }
 
 const SignIn = (props) => {
-	// constructor(props) {
-	// 	super(props)
 
-	// 	this.state = {
-	// 		email: '',
-	// 		password: '',
-	// 	}
-	// }
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
 
-	// handleChange = (event) =>
-	// 	this.setState({
-	// 		[event.target.name]: event.target.value,
-	// 	})
-
 	const onSignIn = (event) => {
 		event.preventDefault()
-        console.log('the props', props)
+
 		const { msgAlert, setUser } = props
 
         const credentials = {name, password}
