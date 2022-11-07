@@ -27,7 +27,7 @@ const cardBody = {
 }
 
 const cardFooter = {
-    backgroundColor: 'rgb(98, 180, 223'
+    backgroundColor: 'rgb(98, 180, 223)'
 }
 
 
@@ -92,17 +92,17 @@ const ShowReview = (props) => {
                     }
                 </Card.Footer>  
                 </Card>       */}
-            <Card className="m-2" >
+            <Card style={cardCSS} className="m-2" >
                 {review.username != user.username ?
-                    <Card.Header>Reviewed By: {review.username} <Button className='btn-sm btn-success float-end'onClick={() => navigate(`/profile/${review.username}`)}>See {review.username}'s Profile</Button></Card.Header>
+                    <Card.Header style={cardHeader}>Reviewed By: {review.username} <Button className='btn-sm btn-success float-end'onClick={() => navigate(`/profile/${review.username}`)}>See {review.username}'s Profile</Button></Card.Header>
                     :
-                    <Card.Header>Your Review</Card.Header>
+                    <Card.Header style={cardHeader}>Your Review</Card.Header>
                 }
-                <Card.Body>
-                    <h6>Score: {review.score}/5</h6>
+                <Card.Body style={cardBody}>
+                    <h6 style={boldText}>Score: {review.score}/5</h6>
                     {review.comment}
                 </Card.Body>
-                <Card.Footer>
+                <Card.Footer style={cardFooter}>
                     {
                         user && review.owner && user._id === review.owner
                             ?
