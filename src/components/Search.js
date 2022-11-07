@@ -12,10 +12,6 @@ const Search = () => {
         e.preventDefault()
         // window.location.href = "http://localhost:3000/games/search/" + `${name}`
         navigate(`/games/search/${name}`)
-
-        console.log(name)
-      
-    
     }
     return (
     <div>
