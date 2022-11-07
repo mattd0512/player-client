@@ -10,8 +10,8 @@ const linkStyle = {
     color: 'white',
     textDecoration: 'none',
 	fontFamily: 'Bungee Inline',
-	fontSize: '13px'
-	// fontWeight: 'bold'
+	fontSize: '13px',
+	fontWeight: 'bold'
 }
 
 const logoStyle = {
@@ -33,34 +33,36 @@ const appLogo = {
 }
 
 const unauthenticatedCSS = {
-	paddingLeft: '45rem'
+	paddingLeft: '45rem',
 }
 
 const authenticatedOptions = (
 	<>
-	<div>
-        <Search/>
+	<div className='justify-content-center'>
+		<div className='m-2'>
+        	<Search/>
+		</div>
+		<div className='m-2'>
         <Nav.Link>
-			<Link to='my-profile' style={linkStyle} className='m-2'>
+			<Link to='my-profile' style={linkStyle}>
 				My Profile
 			</Link>
 		</Nav.Link>
+		</div>
+		<div className='m-2'>
 		<Nav.Link>
-			<Link to='my-profile' style={linkStyle} className='m-2'>
-				My Profile
+			<Link to='change-password' style={linkStyle}>
+				Update Password
 			</Link>
 		</Nav.Link>
+		</div>
+		<div className='m-2'>
 		<Nav.Link>
-			<Link to='sign-out' style={linkStyle} className='m-2'>
+			<Link to='sign-out' style={linkStyle}>
 				Sign Out
 			</Link>
 		</Nav.Link>
-
-		<Nav.Link>
-			<Link to='my-profile' style={linkStyle} className='m-2'>
-				My profile
-			</Link>
-		</Nav.Link>
+		</div>
 	</div>	
 	</>
 )
@@ -93,15 +95,18 @@ const Header = ({ user }) =>
 	<Navbar style={ headerStyle } variant='dark' expand='md'>
 		<Navbar.Brand style={ appLogo }>
             <Link to='/' style={logoStyle}>
-                GameShare
+                GameShar
             </Link>
+			<Link to='/' style={logoStyle}>
+				<RiGameFill/>
+			</Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
-				{user && (
+				{/* {user && (
 					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
-				)}
+				)} */}
 				{/* {alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions} */}
 			</Nav>
