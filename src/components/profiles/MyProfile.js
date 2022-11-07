@@ -18,7 +18,8 @@ import { myProfile, editPlatform, deletePlatform, addPlatform } from '../../api/
 
 const thumbnailImg = {
   borderRadius: '50%',
-  height: '150px'
+  height: '150px',
+  width: '150px'
 }
 
 const cardContainerLayout = {
@@ -187,6 +188,7 @@ const MyProfile = (props) => {
                         user = {user}
                         msgAlert = {msgAlert}
                         gameId = {game}
+                        mine = {true}
                         setUser={setUser}
                     />
                 
@@ -199,7 +201,16 @@ const MyProfile = (props) => {
         <>
         <div >
             
-            <h3><img src={user.thumbnail} style={thumbnailImg}/><br></br>Hello, {user.username}</h3 >
+            <h3>
+                {user.thumbnail?
+                <img src={user.thumbnail} style={thumbnailImg}/>
+                :
+                null
+                }
+
+                <br />
+                Hello, {user.username}
+                </h3 >
             <Button className="btn-sm m-1" onClick={NewPlatform}>Add a Platform Username</Button>
             { user && user.platforms.length > 0?
                 <>
