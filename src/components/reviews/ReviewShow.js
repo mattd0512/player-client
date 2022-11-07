@@ -59,7 +59,7 @@ const ShowReview = (props) => {
 
     return (
         <>
-            <Card style={cardCSS} className="m-2" >
+            {/* <Card style={cardCSS} className="m-2" >
                 <Card.Header style={cardHeader} onClick={() => navigate(`/profile/${review.username}`)}>Reviewed By: {review.username}</Card.Header>
                 <Card.Body style={cardBody}>
                     <h6 style={boldText}>Score: { review.score }/5</h6>
@@ -89,6 +89,9 @@ const ShowReview = (props) => {
                         </>
                         :
                         null
+                    }
+                </Card.Footer>  
+                </Card>       */}
             <Card className="m-2" >
                 {review.username != user.username ?
                     <Card.Header>Reviewed By: {review.username} <Button className='btn-sm btn-success float-end'onClick={() => navigate(`/profile/${review.username}`)}>See {review.username}'s Profile</Button></Card.Header>

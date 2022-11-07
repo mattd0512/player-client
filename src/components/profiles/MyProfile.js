@@ -224,7 +224,7 @@ const MyProfile = (props) => {
         </div>
 
 {/* Modal for editing an existing username/platform */}
-            <div >
+            {/* <div >
 
                 <h3>
                     {user.thumbnail ?
@@ -246,7 +246,7 @@ const MyProfile = (props) => {
                 }<div style={cardContainerLayout}>
                     {gameCards}</div>
 
-            </div>
+            </div> */}
             {/* Modal for editing an existing username/platform */}
             <Modal show={platEditShow} onHide={handleEditClose}>
                 <Modal.Header closeButton>

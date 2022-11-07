@@ -67,8 +67,6 @@ const authenticatedOptions = (
 	</div>
 	</>
 
-	</div>	
-
 )
 
 const unauthenticatedOptions = (

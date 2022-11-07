@@ -213,36 +213,23 @@ const GameShow = ({ user, msgAlert, setUser }) => {
 
     return (
         <>
-        <div style={backgroundCSS}>
-			<Container className="fluid">
-                <Row>
-                <Col style={col1Style}>
+            <div style={backgroundCSS}>
+			    <Container className="fluid">
+                 <Row>
+                    <Col style={col1Style}>
                 <Card style={cardCSS}>
                 <Card.Header style={cardHeader}>
-                    <h4 style={boldText}>{ game.name }</h4>
-                </Card.Header>
-                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
-                <Card.Body>
-                    <Card.Text>
-                        {/* <div style={cardBody}>
-            <div style={backgroundCSS}>
-                <Container className="fluid">
-                    <Card style={cardCSS}>
-                        <Card.Header style={cardHeader}>
-                            {gameshareScore ?
+                {gameshareScore ?
                                 <>
                                     <h5>Gameshare Score<br />{gameshareScore}/5</h5><hr />
                                 </>
                                 :
                                 null}
-                            <h4>{game.name}</h4>
-                        </Card.Header>
-                        <Card.Img variant="top" src={game.image} style={imageDisplay} />
-                        <Card.Body>
-                            <Card.Text>
-                                {/* <div style={cardBody}>
-                        <img src={ game.image } style={imageDisplay}/><br/><br/>
-                        </div> */}
+                    <h4 style={boldText}>{ game.name }</h4>
+                </Card.Header>
+                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
+                <Card.Body>
+                    <Card.Text>
                                 <div>
                                     <small><span style={boldText}>Description:</span> {game.description}</small>
                                 </div>
@@ -255,10 +242,8 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                                     <FiBookmark />Add To Collection
                                 </Button>
                             }
-
                         </Card.Body>
                     </Card>
-                    
                     <Card>
                         {canReview ?
                             <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
@@ -267,8 +252,6 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                             :
                             null
                         }
-                    
-                </Card.Body>
                 </Card>
                 </Col>
                 <Col style={col2Style}>
@@ -297,11 +280,15 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                 handleClose={() => setReviewModalShow(false)}
             />
             </Col>
-            </Row>
-            </Container>
-        </div>
-                    </Card>
-                    {reviewCards}
+            {/* <Col style={col2Style}>
+                <div>
+                <div>{reviewCards}</div>
+                <Card style={reviewCardCSS}>
+                    <Button style={reviewButtonCSS} onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
+                        Write {game.name} a review!
+                    </Button>
+                </Card>
+                </div>
                     <EditReviewModal
                         user={user}
                         game={game}
@@ -318,7 +305,9 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                         triggerRefresh={() => setUpdated(prev => !prev)}
                         handleClose={() => setReviewModalShow(false)}
                     />
-                </Container>
+                    </Col> */}
+                    </Row>
+             </Container>
             </div>
         </>
     )

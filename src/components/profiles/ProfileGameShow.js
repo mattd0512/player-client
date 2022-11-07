@@ -190,7 +190,7 @@ const GameShow = ({ user, msgAlert, gameId, mine, setUser }) => {
                 </Card>
             </Container>
         </div>
-            <div style={backgroundCSS}>
+            {/* <div style={backgroundCSS}>
                 <Container className="fluid">
                     <Card style={cardCSS}>
                         <Card.Header style={cardHeader}><h3>{game.name}</h3></Card.Header>
@@ -220,7 +220,7 @@ const GameShow = ({ user, msgAlert, gameId, mine, setUser }) => {
                         </Card.Footer>
                     </Card>
                 </Container>
-            </div>
+            </div> */}
         </>
     )
 }
