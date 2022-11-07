@@ -22,8 +22,15 @@ const backgroundCSS = {
 
 const cardHeader = {
     fontFamily: 'Bungee Inline',
+    // backgroundColor: 'rgb(241, 50, 50)',
+    // color: 'white'
 }
 
+const cardFooter = {
+    backgroundColor: 'rgb(241, 50, 50)',
+    color: 'white',
+    fontFamily: 'Bungee Inline',
+}
 
 const spinnerCSS = {
     marginLeft: '15%',
@@ -219,12 +226,12 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                         <Col style={col1Style}>
                             <Card style={cardCSS}>
                                 <Card.Header style={cardHeader}>
-                                    {gameshareScore ?
+                                    {/* {gameshareScore ?
                                         <>
                                             <h5>Gameshare Score<br />{gameshareScore}/5</h5><hr />
                                         </>
                                         :
-                                        null}
+                                        null} */}
                                     <h4 style={boldText}>{game.name}</h4>
                                 </Card.Header>
                                 <Card.Img variant="top" src={game.image} style={imageDisplay} />
@@ -243,6 +250,14 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                                         </Button>
                                     }
                                 </Card.Body>
+                                <Card.Footer style={cardFooter}>
+                                {gameshareScore ?
+                                        <>
+                                            <h5 style={boldText}>Gameshare Score<br />{gameshareScore}/5</h5>
+                                        </>
+                                        :
+                                        null}
+                                </Card.Footer>
                             </Card>
                             <Card>
                                 {/* {canReview ?
