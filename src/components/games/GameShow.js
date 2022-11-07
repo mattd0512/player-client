@@ -69,6 +69,7 @@ const cardContainerLayout = {
     justifyContent: 'center'
 }
 
+
 const GameShow = ({ user, msgAlert, setUser }) => {
 
     const [game, setGame] = useState(null)
