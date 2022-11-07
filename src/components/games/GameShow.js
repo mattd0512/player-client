@@ -214,73 +214,77 @@ const GameShow = ({ user, msgAlert, setUser }) => {
     return (
         <>
             <div style={backgroundCSS}>
-			    <Container className="fluid">
-                 <Row>
-                    <Col style={col1Style}>
-                <Card style={cardCSS}>
-                <Card.Header style={cardHeader}>
-                {gameshareScore ?
-                                <>
-                                    <h5>Gameshare Score<br />{gameshareScore}/5</h5><hr />
-                                </>
-                                :
-                                null}
-                    <h4 style={boldText}>{ game.name }</h4>
-                </Card.Header>
-                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
-                <Card.Body>
-                    <Card.Text>
-                                <div>
-                                    <small><span style={boldText}>Description:</span> {game.description}</small>
-                                </div>
-                            </Card.Text>
+                <Container className="fluid">
+                    <Row>
+                        <Col style={col1Style}>
+                            <Card style={cardCSS}>
+                                <Card.Header style={cardHeader}>
+                                    {gameshareScore ?
+                                        <>
+                                            <h5>Gameshare Score<br />{gameshareScore}/5</h5><hr />
+                                        </>
+                                        :
+                                        null}
+                                    <h4 style={boldText}>{game.name}</h4>
+                                </Card.Header>
+                                <Card.Img variant="top" src={game.image} style={imageDisplay} />
+                                <Card.Body>
+                                    <Card.Text>
+                                        <div>
+                                            <small><span style={boldText}>Description:</span> {game.description}</small>
+                                        </div>
+                                    </Card.Text>
 
-                            {user.myGames.includes(apiId) ?
-                                <><FiBookmark />In My Library</>
-                                :
-                                <Button onClick={() => AddToCollection()}>
-                                    <FiBookmark />Add To Collection
-                                </Button>
-                            }
-                        </Card.Body>
-                    </Card>
-                    <Card>
-                        {canReview ?
+                                    {user.myGames.includes(apiId) ?
+                                        <><FiBookmark />In My Library</>
+                                        :
+                                        <Button onClick={() => AddToCollection()}>
+                                            <FiBookmark />Add To Collection
+                                        </Button>
+                                    }
+                                </Card.Body>
+                            </Card>
+                            <Card>
+                                {/* {canReview ?
                             <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
                                 Write {game.name} a review!
                             </Button>
                             :
                             null
-                        }
-                </Card>
-                </Col>
-                <Col style={col2Style}>
-                <div>
-                <div>{reviewCards}</div>
-                <Card style={reviewCardCSS}>
-                    <Button style={reviewButtonCSS} onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
-                        Write {game.name} a review!
-                    </Button>
-                </Card>
-                </div>
-            <EditReviewModal 
-                user={user}
-                game={game}
-                show={editModalShow}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setEditModalShow(false)}
-            />
-            <NewReviewModal 
-                user={user}
-                game={game}
-                show={reviewModalShow}
-                msgAlert={msgAlert}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setReviewModalShow(false)}
-            />
-            </Col>
-            {/* <Col style={col2Style}>
+                        } */}
+                            </Card>
+                        </Col>
+                        <Col style={col2Style}>
+                            <div>
+                                <div>{reviewCards}</div>
+                                <Card style={reviewCardCSS}>
+                                    {canReview ?
+                                        <Button style={reviewButtonCSS} onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
+                                            Write {game.name} a review!
+                                        </Button>
+                                        :
+                                        null
+                                    }
+                                </Card>
+                            </div>
+                            <EditReviewModal
+                                user={user}
+                                game={game}
+                                show={editModalShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setEditModalShow(false)}
+                            />
+                            <NewReviewModal
+                                user={user}
+                                game={game}
+                                show={reviewModalShow}
+                                msgAlert={msgAlert}
+                                triggerRefresh={() => setUpdated(prev => !prev)}
+                                handleClose={() => setReviewModalShow(false)}
+                            />
+                        </Col>
+                        {/* <Col style={col2Style}>
                 <div>
                 <div>{reviewCards}</div>
                 <Card style={reviewCardCSS}>
@@ -307,7 +311,7 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                     />
                     </Col> */}
                     </Row>
-             </Container>
+                </Container>
             </div>
         </>
     )
