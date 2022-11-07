@@ -18,7 +18,8 @@ const logoStyle = {
     color: 'white',
     textDecoration: 'none',
 	fontFamily: 'Bungee Inline',
-	fontSize: '20px'
+	fontSize: '20px',
+	fontWeight: 'bold'
 }
 
 const headerStyle = {
