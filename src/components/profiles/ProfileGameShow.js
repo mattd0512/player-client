@@ -7,10 +7,13 @@ import apiUrl from '../../apiConfig'
 import { removeFromCollection, setAsFavorite } from '../../api/profile'
 
 const backgroundCSS = {
-    backgroundColor: 'rgb(212, 212, 212)',
+    backgroundImage: 'linear-gradient(red, yellow, red)',
     // backgroundColor: 'rgb(120, 219, 111)',
     display: 'flex',
-    justifyContent: 'center'
+    flexFlow: 'row wrap',
+    justifyContent: 'center',
+    width:'350px',
+    marginBottom: '20px'
 }
 
 const cardHeader = {
@@ -34,10 +37,11 @@ const boldText = {
 
 const cardCSS = {
     marginTop: '20px',
-    marginBottom: '20px',
+   
     width: '20rem',
     height: '35rem',
     display: 'flex',
+    flexFlow: 'row wrap',
     justifyContent: 'center',
     textAlign: 'center',
     borderRadius: '2.5%'
@@ -45,6 +49,7 @@ const cardCSS = {
 
 const findingResult = {
     display: 'flex',
+    flexFlow: 'row wrap',
     justifyContent: 'center',
     fontWeight: 'bold',
     marginTop: '30%',
@@ -53,11 +58,11 @@ const findingResult = {
 }
 
 const imageDisplay = {
-    height: '90%',
-    width: '90%'
+    // height: '50%',
+    width: '50%'
 }
 
-const GameShow = ({ user, msgAlert, gameId, setUser }) => {
+const GameShow = ({ user, msgAlert, gameId, mine, setUser }) => {
     
     const [game, setGame] = useState(null)
 
@@ -163,7 +168,7 @@ const GameShow = ({ user, msgAlert, gameId, setUser }) => {
 			<Container className="fluid">
                 <Card style={cardCSS}>
                 <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
-                <Card.Img variant="top" src={game.image} />
+                <Card.Img variant="top" src={game.image} style={imageDisplay} />
                 <Card.Body>
                     <Card.Text>
                         {/* <div style={cardBody}>
@@ -176,9 +181,16 @@ const GameShow = ({ user, msgAlert, gameId, setUser }) => {
                 </Card.Body>
                 <Card.Footer>
                     {/* <ButtonGroup> */}
+                        <Button onClick={() => navigate(`/games/${gameId}`)}>See Game Page</Button>
+                        {mine?
+                        <>
                         <Button onClick={() => removeFromMyLibrary()} className ="btn-success m-1">Remove from Library</Button>
                         {user.thumbnail != game.thumbnail?
                         <Button onClick={() => myFavorite()} className ="btn-success m-1">Set as Profile Pic</Button>
+                        :
+                        null
+                        }
+                        </>
                         :
                         null
                         }

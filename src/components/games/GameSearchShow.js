@@ -9,12 +9,12 @@ const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
     // backgroundColor: 'rgb(120, 219, 111)',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
 }
 
 const cardBody = {
     width: '100%',
-    height: '100%'
+    height: '100%',
 }
 
 const spinnerCSS = {

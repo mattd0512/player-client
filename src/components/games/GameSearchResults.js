@@ -28,8 +28,8 @@ const boldText = {
 const cardCSS = {
     marginTop: '20px',
     marginBottom: '20px',
-    width: '5rem',
-    height: '15rem',
+    width: '20%',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -50,13 +50,13 @@ const imageDisplay = {
     width: '90%'
 }
 
-const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
-    useEffect(() => {
-        setRenderSearch(true)
-    },[])
+const GameSearch = ({ user, msgAlert }) => {
+    // useEffect(() => {
+    //     setRenderSearch(true)
+    // },[])
     
     const [allGames, setAllGames ] = useState([])
-    
+    const [searchedGame, setSearchedGame] = useState(null)
     const { name } = useParams()
     let searchTerm 
 
@@ -64,7 +64,7 @@ const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
     useEffect(() => {
         gameSearchResults(user, name)
             .then((res) => {
-                
+                setSearchedGame(name)
                 console.log(res.data.results)
                 // setAllGames({
                 //     name: res.data.results[0].name,
@@ -90,7 +90,7 @@ const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
             
             .then(games => {
                 console.log(games)
-                setRenderSearch(false)
+                // setRenderSearch(false)
                 setAllGames(games)
             })
             .catch((error) => {
@@ -100,7 +100,7 @@ const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
                     variant: 'danger'
                 })
             })
-        }, [renderSearch])
+        }, [name != searchedGame])
     
     if (!allGames) {
         return (
@@ -135,7 +135,9 @@ const GameSearch = ({ user, msgAlert, renderSearch, setRenderSearch }) => {
         // </div>
         // </>
         <>
+
         {allGames}
+
         </>
     )
 

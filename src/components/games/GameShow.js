@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' 
 import { Container, Card, Button } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { gameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
 import { FiBookmark } from "react-icons/fi"
@@ -8,6 +8,8 @@ import ReviewShow from '../reviews/ReviewShow'
 import NewReviewModal from '../reviews/NewReviewModal'
 import EditReviewModal from '../reviews/EditReviewModal'
 import { getReview } from '../../api/review'
+import { addToCollection } from '../../api/profile'
+
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
@@ -67,7 +69,7 @@ const cardContainerLayout = {
     justifyContent: 'center'
 }
 
-const GameShow = ({ user, msgAlert }) => {
+const GameShow = ({ user, msgAlert, setUser }) => {
 
     const [game, setGame] = useState(null)
     const [reviews, setReviews] = useState(null)
@@ -75,12 +77,29 @@ const GameShow = ({ user, msgAlert }) => {
     const [updated, setUpdated] = useState(false)
     const { apiId } = useParams()
     const [reviewModalShow, setReviewModalShow] = useState(false)
-    // const [loadReviews, setLoadReviews] = useState(true)
 
-    // if (gameId) {
-    //     apiId  = gameId
-    // } 
-    console.log(apiId)
+    const navigate = useNavigate()
+    
+    const AddToCollection = () => {
+        addToCollection(user, game.id)
+            .then((res) => setUser(res.data.user))
+            .then(() =>
+				msgAlert({
+					heading: 'Game Added',
+					message: `${game.name} has been added to your collection.`,
+					variant: 'success',
+				})
+			)
+            .catch(() => {
+				msgAlert({
+					heading: 'Failed to Add Game',
+					message: 'Failed to add game to your collection.',
+					variant: 'danger',
+				})
+			})
+            
+    }
+
     useEffect(() => {
         gameShow(user, apiId)
             .then((res) => {
@@ -177,7 +196,15 @@ const GameShow = ({ user, msgAlert }) => {
                             <small><span style={boldText}>Description:</span> { game.description }</small>
                         </div>
                     </Card.Text>
-                    <FiBookmark/>
+                    
+                        {user.myGames.includes(apiId)?
+                        <><FiBookmark/>In My Library</>
+                        :
+                        <Button onClick={() => AddToCollection()}>
+                            <FiBookmark/>Add To Collection
+                        </Button>
+                        }
+                    
                 </Card.Body>
                 </Card>
                 <div>{reviewCards}</div>
