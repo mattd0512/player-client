@@ -34,7 +34,7 @@ const PlatformForm = (props) => {
 
         </Form.Select>
         <Button className="float-end m-1"type="submit">Submit</Button>
-
+        {/* Conditionally render here */}
         {platform.name?
         <Button className="float-end m-1" onClick={ ()=>handleDelete() }>Delete</Button>
         :

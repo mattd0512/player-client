@@ -26,6 +26,7 @@ export const gameCreate = (data, user) => {
 // }
 
 // game index search results
+// Remove unused `user` from params
 export const gameSearchResults = (user, name) => {
 	return axios({
 		method: 'GET',
@@ -34,6 +35,7 @@ export const gameSearchResults = (user, name) => {
 }
 
 // game show
+// Remove unused `user` from params
 export const gameShow = (user, apiId) => {
 	return axios({
 		method: 'GET',
@@ -42,6 +44,7 @@ export const gameShow = (user, apiId) => {
 }
 
 // local game show
+// Remove unused `user` from params
 export const localGameShow = (user, apiId) => {
 	return axios({
 		method: 'GET',

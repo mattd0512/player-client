@@ -10,9 +10,11 @@ import PlatformForm from '../shared/PlatformForm'
 
 // import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+// Remove unused Container
 import { Badge, Modal, Container } from 'react-bootstrap'
 
 // import apiUrl from '../../apiConfig'
+// remove unused `myProfile`
 import { myProfile, editPlatform, deletePlatform, addPlatform } from '../../api/profile'
 // import { updatePlatform } from '../../api/profile'
 
@@ -198,6 +200,7 @@ const MyProfile = (props) => {
             
             <div style={profileInfo}>
             <h3>
+                {/* Conditionally render here as well */}
                 {user.thumbnail?
                 <img src={user.thumbnail} style={thumbnailImg}/>
                 :
@@ -208,6 +211,7 @@ const MyProfile = (props) => {
                 Hello, {user.username}
                 </h3 >
             <Button className="btn-sm m-1" onClick={NewPlatform}>Add a Platform Username</Button>
+            {/* Conditionally render here */}
             { user && user.platforms.length > 0?
                 <>
                 <h6>My Gamer Tags:<small><i>(click to edit or remove)</i></small></h6>

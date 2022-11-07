@@ -1,3 +1,4 @@
+// unused Component can remove file
 import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { deletePlatform } from '../../api/profile'

@@ -103,6 +103,7 @@ const GameShow = ({ user, msgAlert, setUser }) => {
     const [reviewModalShow, setReviewModalShow] = useState(false)
     const [canReview, setCanReview] = useState(true)
     const [gameshareScore, setGamesharScore] = useState(null)
+    // can remove unused `useNavigate()`
     const navigate = useNavigate()
 
     const AddToCollection = () => {
@@ -155,6 +156,7 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                 }
 
                 let avgScore
+                // This can become unreadalbe pretty quick. Always leave a comment about what something is doing when we cannot see straight off the bat what it's doing
                 if (res.data.reviews.length > 0) {
                     avgScore = 0
                     res.data.reviews.forEach(review => {
@@ -169,6 +171,7 @@ const GameShow = ({ user, msgAlert, setUser }) => {
             })
     }, [updated])
 
+    // Can remove or comment out unused lines 175 to 188. Also coding consistency is something that we need to keep in mind. Here you are using `useState` but not using the import that you did at the top of the file. If you have imported everything one way the best thing is to stick with that way. 
     const [currentValue, setCurrentValue] = React.useState(0)
     const [hoverValue, setHoverValue] = React.useState(undefined)
 
@@ -219,87 +222,107 @@ const GameShow = ({ user, msgAlert, setUser }) => {
     }
 
     return (
-        <>
-            <div style={backgroundCSS}>
-                <Container className="fluid">
-                    <Row>
-                        <Col style={col1Style}>
-                            <Card style={cardCSS}>
-                                <Card.Header style={cardHeader}>
-                                    {/* {gameshareScore ?
+			<>
+				<div style={backgroundCSS}>
+					<Container className='fluid'>
+						<Row>
+							<Col style={col1Style}>
+								<Card style={cardCSS}>
+									<Card.Header style={cardHeader}>
+										{/* {gameshareScore ?
                                         <>
                                             <h5>Gameshare Score<br />{gameshareScore}/5</h5><hr />
                                         </>
                                         :
                                         null} */}
-                                    <h4 style={boldText}>{game.name}</h4>
-                                </Card.Header>
-                                <Card.Img variant="top" src={game.image} style={imageDisplay} />
-                                <Card.Body>
-                                    <Card.Text>
-                                        <div>
-                                            <small><span style={boldText}>Description:</span> {game.description}</small>
-                                        </div>
-                                    </Card.Text>
+										<h4 style={boldText}>{game.name}</h4>
+									</Card.Header>
+									<Card.Img
+										variant='top'
+										src={game.image}
+										style={imageDisplay}
+									/>
+									<Card.Body>
+										<Card.Text>
+											<div>
+												<small>
+													<span style={boldText}>Description:</span>{' '}
+													{game.description}
+												</small>
+											</div>
+										</Card.Text>
 
-                                    {user.myGames.includes(apiId) ?
-                                        <><FiBookmark />In My Library</>
-                                        :
-                                        <Button onClick={() => AddToCollection()}>
-                                            <FiBookmark />Add To Collection
-                                        </Button>
-                                    }
-                                </Card.Body>
-                                <Card.Footer style={cardFooter}>
-                                {gameshareScore ?
-                                        <>
-                                            <h5 style={boldText}>Gameshare Score<br />{gameshareScore}/5</h5>
-                                        </>
-                                        :
-                                        null}
-                                </Card.Footer>
-                            </Card>
-                            <Card>
-                                {/* {canReview ?
+										{user.myGames.includes(apiId) ? (
+											<>
+												<FiBookmark />
+												In My Library
+											</>
+										) : (
+											<Button onClick={() => AddToCollection()}>
+												<FiBookmark />
+												Add To Collection
+											</Button>
+										)}
+									</Card.Body>
+									<Card.Footer style={cardFooter}>
+										{/* Can use conditional rendering for this instead of a ternary.
+										{gameshareScore && <h5>things in here</h5>} */}
+										{gameshareScore ? (
+											<>
+												<h5 style={boldText}>
+													Gameshare Score
+													<br />
+													{gameshareScore}/5
+												</h5>
+											</>
+										) : null}
+									</Card.Footer>
+								</Card>
+								<Card>
+									{/* {canReview ?
                             <Button onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
                                 Write {game.name} a review!
                             </Button>
                             :
                             null
                         } */}
-                            </Card>
-                        </Col>
-                        <Col style={col2Style}>
-                            <div>
-                                <div>{reviewCards}</div>
-                                <Card style={reviewCardCSS}>
-                                    {canReview ?
-                                        <Button style={reviewButtonCSS} onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
-                                            Write {game.name} a review!
-                                        </Button>
-                                        :
-                                        null
-                                    }
-                                </Card>
-                            </div>
-                            <EditReviewModal
-                                user={user}
-                                game={game}
-                                show={editModalShow}
-                                msgAlert={msgAlert}
-                                triggerRefresh={() => setUpdated(prev => !prev)}
-                                handleClose={() => setEditModalShow(false)}
-                            />
-                            <NewReviewModal
-                                user={user}
-                                game={game}
-                                show={reviewModalShow}
-                                msgAlert={msgAlert}
-                                triggerRefresh={() => setUpdated(prev => !prev)}
-                                handleClose={() => setReviewModalShow(false)}
-                            />
-                        </Col>
-                        {/* <Col style={col2Style}>
+								</Card>
+							</Col>
+							<Col style={col2Style}>
+								<div>
+									<div>{reviewCards}</div>
+									<Card style={reviewCardCSS}>
+										{/* Conditionally render this instead of using a ternary
+										{canReview && <Button>Button stuff here</Button>} */}
+										{canReview ? (
+											<Button
+												style={reviewButtonCSS}
+												onClick={() => setReviewModalShow(true)}
+												className='m-2'
+												variant='info'>
+												Write {game.name} a review!
+											</Button>
+										) : null}
+									</Card>
+								</div>
+								<EditReviewModal
+									user={user}
+									game={game}
+									show={editModalShow}
+									msgAlert={msgAlert}
+									triggerRefresh={() => setUpdated((prev) => !prev)}
+									handleClose={() => setEditModalShow(false)}
+								/>
+								<NewReviewModal
+									user={user}
+									game={game}
+									show={reviewModalShow}
+									msgAlert={msgAlert}
+									triggerRefresh={() => setUpdated((prev) => !prev)}
+									handleClose={() => setReviewModalShow(false)}
+								/>
+							</Col>
+							{/* <Col style={col2Style}>
                 <div>
                 <div>{reviewCards}</div>
                 <Card style={reviewCardCSS}>
@@ -325,11 +348,11 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                         handleClose={() => setReviewModalShow(false)}
                     />
                     </Col> */}
-                    </Row>
-                </Container>
-            </div>
-        </>
-    )
+						</Row>
+					</Container>
+				</div>
+			</>
+		)
 }
 
 export default GameShow

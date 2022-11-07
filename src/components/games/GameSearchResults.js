@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+// Remove unused Card import
 import { Container, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { gameSearchResults } from '../../api/game'
@@ -38,39 +39,38 @@ const GameSearch = ({ user, msgAlert }) => {
     const [allGames, setAllGames] = useState([])
     const [searchedGame, setSearchedGame] = useState(null)
     const { name } = useParams()
+    // remove unused `searchTerm`
     let searchTerm
 
     // let allGames
     useEffect(() => {
-        gameSearchResults(user, name)
-            .then((res) => {
-                setSearchedGame(name)
-                let games = res.data.results.map((game) => (
-                    <GameSearchShow
-                        key={game.id}
-                        name={game.name}
-                        image={game.image.thumb_url}
-                        id={game.id}
-                    // game = {game}
-                    />
-                ))
+			gameSearchResults(user, name)
+				.then((res) => {
+					setSearchedGame(name)
+					let games = res.data.results.map((game) => (
+						<GameSearchShow
+							key={game.id}
+							name={game.name}
+							image={game.image.thumb_url}
+							id={game.id}
+							// game = {game}
+						/>
+					))
 
-                return games
-            })
+					return games
+				})
 
-
-            .then(games => {
-
-                setAllGames(games)
-            })
-            .catch((error) => {
-                msgAlert({
-                    heading: 'Failure',
-                    message: 'Failure to find games ' + error,
-                    variant: 'danger'
-                })
-            })
-    }, [name != searchedGame])
+				.then((games) => {
+					setAllGames(games)
+				})
+				.catch((error) => {
+					msgAlert({
+						heading: 'Failure',
+						message: 'Failure to find games ' + error,
+						variant: 'danger',
+					})
+				})
+		}, [name != searchedGame])
 
     if (!allGames) {
         return (

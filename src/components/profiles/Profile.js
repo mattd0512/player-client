@@ -85,6 +85,7 @@ const Profile = (props) => {
                 <div >
 
                     <h3>
+                        {/* Conditionally render here */}
                         {otherUser.thumbnail ?
                             <img src={otherUser.thumbnail} style={thumbnailImg} />
                             :
@@ -92,6 +93,7 @@ const Profile = (props) => {
                         }
                         <br />
                         {otherUser.username}'s Profile</h3 >
+                        {/* Conditionally render here */}
                     {otherUser && otherUser.platforms.length > 0 ?
                         <>
                             <h6>{otherUser.username}'s Gamer Tags:</h6>

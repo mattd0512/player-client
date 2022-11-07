@@ -35,6 +35,7 @@ function Messages({ socket }) {
   return (
     <div className="message-list">
       {[...Object.values(messages)]
+      // love this but when abstracting var names always leave a comment on what this is doing 
         .sort((a, b) => a.time - b.time)
         .map((message) => (
           <div

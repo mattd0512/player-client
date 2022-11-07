@@ -103,6 +103,7 @@ const ShowReview = (props) => {
                     {review.comment}
                 </Card.Body>
                 <Card.Footer style={cardFooter}>
+                    {/* Conditionally render here */}
                     {
                         user && review.owner && user._id === review.owner
                             ?
