@@ -60,6 +60,7 @@ const authenticatedOptions = (
 			</Link>
 		</Nav.Link>
 	</div>	
+	</>
 )
 
 const unauthenticatedOptions = (
