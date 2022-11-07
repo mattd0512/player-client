@@ -153,6 +153,43 @@ const GameShow = ({ user, msgAlert, gameId, mine, setUser }) => {
 
     return (
         <>
+        <div style={backgroundCSS}>
+			<Container className="fluid">
+                <Card style={cardCSS}>
+                <Card.Header style={cardHeader}>
+                    <h3 style={boldText}>{ game.name }</h3>
+                </Card.Header>
+                <Card.Img variant="top" src={game.image} style={imageDisplay} />
+                <Card.Body>
+                    <Card.Text>
+                        {/* <div style={cardBody}>
+                        <img src={ game.image } style={imageDisplay}/><br/><br/>
+                        </div> */}
+                        <div>
+                            <small><span style={boldText}>Description:</span> { game.description }</small>
+                        </div>
+                    </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                    {/* <ButtonGroup> */}
+                        <Button onClick={() => navigate(`/games/${gameId}`)}>See Game Page</Button>
+                        {mine?
+                        <>
+                        <Button onClick={() => removeFromMyLibrary()} className ="btn-success m-1">Remove from Library</Button>
+                        {user.thumbnail != game.thumbnail?
+                        <Button onClick={() => myFavorite()} className ="btn-success m-1">Set as Profile Pic</Button>
+                        :
+                        null
+                        }
+                        </>
+                        :
+                        null
+                        }
+                    {/* </ButtonGroup> */}
+                </Card.Footer>
+                </Card>
+            </Container>
+        </div>
             <div style={backgroundCSS}>
                 <Container className="fluid">
                     <Card style={cardCSS}>
