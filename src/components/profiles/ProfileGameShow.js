@@ -167,7 +167,9 @@ const GameShow = ({ user, msgAlert, gameId, mine, setUser }) => {
         <div style={backgroundCSS}>
 			<Container className="fluid">
                 <Card style={cardCSS}>
-                <Card.Header style={cardHeader}><h3>{ game.name }</h3></Card.Header>
+                <Card.Header style={cardHeader}>
+                    <h3 style={boldText}>{ game.name }</h3>
+                </Card.Header>
                 <Card.Img variant="top" src={game.image} style={imageDisplay} />
                 <Card.Body>
                     <Card.Text>

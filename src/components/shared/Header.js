@@ -14,6 +14,11 @@ const linkStyle = {
 	fontWeight: 'bold'
 }
 
+const searchStyle = {
+	fontFamily: 'Bungee Inline',
+	fontSize: '15px',
+}
+
 const logoStyle = {
     color: 'white',
     textDecoration: 'none',
@@ -33,64 +38,61 @@ const appLogo = {
 }
 
 const unauthenticatedCSS = {
-	paddingLeft: '45rem',
+	paddingLeft: '45rem'
 }
 
 const authenticatedOptions = (
 	<>
-	<div className='justify-content-center'>
-		<div className='m-2'>
-        	<Search/>
-		</div>
-		<div className='m-2'>
-        <Nav.Link>
-			<Link to='my-profile' style={linkStyle}>
+	<div style={searchStyle} className='m-2'>
+	<Search/>
+	</div>
+	<div>
+		<Nav.Link>
+			<Link to='my-profile' style={linkStyle} className='m-2'>
 				My Profile
 			</Link>
 		</Nav.Link>
-		</div>
-		<div className='m-2'>
+	</div>
 		<Nav.Link>
-			<Link to='change-password' style={linkStyle}>
+			<Link to='change-password' style={linkStyle} className='m-2'>
 				Update Password
 			</Link>
 		</Nav.Link>
-		</div>
-		<div className='m-2'>
+	<div>
 		<Nav.Link>
-			<Link to='sign-out' style={linkStyle}>
+			<Link to='sign-out' style={linkStyle} className='m-2'>
 				Sign Out
 			</Link>
 		</Nav.Link>
-		</div>
-	</div>	
+	</div>
 	</>
 )
 
 const unauthenticatedOptions = (
 	<>
+	<div>
         <Nav.Link style={unauthenticatedCSS}>
 		    <Link to='sign-up' style={linkStyle} className='m-2'>Create Account</Link>
         </Nav.Link>
+	</div>
+	<div>
         <Nav.Link>
 		    <Link to='sign-in' style={linkStyle} className='m-2'>Login</Link>
         </Nav.Link>
+	</div>
 	</>
 )
 
-// const alwaysOptions = (
-// 	<>
+const alwaysOptions = (
+	<>
 
-// 		<Nav.Item>
-// 			<Search/>
-// 		</Nav.Item>
-// 	</>
-// )
+		{/* <Nav.Item>
+			<Search/>
+		</Nav.Item> */}
+	</>
+)
 
-const Header = ({ user }) =>
-
-(
-    
+const Header = ({ user }) => (
 	
 	<Navbar style={ headerStyle } variant='dark' expand='md'>
 		<Navbar.Brand style={ appLogo }>
@@ -103,17 +105,10 @@ const Header = ({ user }) =>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
-				{/* {user && (
-					<span className='navbar-text mr-2'>Welcome, {user.username}</span>
-				)} */}
-				{/* {alwaysOptions}
-				{user ? authenticatedOptions : unauthenticatedOptions} */}
-			</Nav>
 			<Container fluid='md'>
 			<Nav className='justify-content-end'>
 				{/* {alwaysOptions} */}
-				
+				{/* <Search user={user}/> */}
 				{user ? authenticatedOptions : unauthenticatedOptions}
 			</Nav>
 			</Container>

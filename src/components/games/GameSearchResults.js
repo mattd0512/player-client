@@ -8,33 +8,12 @@ import GameSearchShow from './GameSearchShow'
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
     // backgroundColor: 'rgb(120, 219, 111)',
-    display: 'flex',
-    justifyContent: 'center'
-}
-
-const cardBody = {
-    width: '100%',
-    height: '100%'
 }
 
 const spinnerCSS = {
     marginLeft: '15%',
 }
 
-const boldText = {
-    fontWeight: 'bold'
-}
-
-const cardCSS = {
-    marginTop: '20px',
-    marginBottom: '20px',
-    width: '20%',
-    height: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    textAlign: 'center',
-    borderRadius: '2.5%'
-}
 
 const findingResult = {
     display: 'flex',
@@ -45,9 +24,10 @@ const findingResult = {
     color: 'rgb(241, 50, 50)'
 }
 
-const imageDisplay = {
-    height: '90%',
-    width: '90%'
+const cardContainerLayout = {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
 }
 
 const GameSearch = ({ user, msgAlert }) => {
@@ -135,9 +115,9 @@ const GameSearch = ({ user, msgAlert }) => {
         // </div>
         // </>
         <>
-
-        {allGames}
-
+        <div style={cardContainerLayout}>
+            {allGames}
+        </div>
         </>
     )
 
