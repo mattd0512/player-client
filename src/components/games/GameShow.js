@@ -9,25 +9,21 @@ import NewReviewModal from '../reviews/NewReviewModal'
 import EditReviewModal from '../reviews/EditReviewModal'
 import { getReview } from '../../api/review'
 import { addToCollection } from '../../api/profile'
-
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const backgroundCSS = {
     backgroundColor: 'rgb(212, 212, 212)',
     // backgroundColor: 'rgb(120, 219, 111)',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // height: '100rem'
 }
 
 const cardHeader = {
-    fontFamily: 'Rubik',
-    // fontWeight: 'bold',
-    // fontSize: '10px'
+    fontFamily: 'Bungee Inline',
 }
 
-const cardBody = {
-    width: '100%',
-    height: '100%'
-}
 
 const spinnerCSS = {
     marginLeft: '15%',
@@ -45,7 +41,7 @@ const cardCSS = {
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
-    borderRadius: '2.5%'
+    borderRadius: '2.5%',
 }
 
 const findingResult = {
@@ -63,10 +59,30 @@ const imageDisplay = {
     alignSelf: 'center'
 }
 
-const cardContainerLayout = {
+const col1Style = {
+    paddingLeft: '5rem'
+}
+
+const col2Style = {
+    paddingRight: '10rem',
     display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'center'
+    justifyContent: 'right'
+}
+
+const reviewCardCSS = {
+    // paddingLeft: '20px',
+    width: '30rem',
+    borderRadius: '2.5%',
+    marginTop: '1rem',
+    marginLeft: '0.5rem',
+    backgroundColor: 'rgb(241, 50, 50)'
+}
+
+const reviewButtonCSS = {
+    backgroundColor: 'rgb(241, 50, 50)',
+    border: 'none',
+    color: 'white',
+    fontWeight: 'bold'
 }
 
 
@@ -197,6 +213,18 @@ const GameShow = ({ user, msgAlert, setUser }) => {
 
     return (
         <>
+        <div style={backgroundCSS}>
+			<Container className="fluid">
+                <Row>
+                <Col style={col1Style}>
+                <Card style={cardCSS}>
+                <Card.Header style={cardHeader}>
+                    <h4 style={boldText}>{ game.name }</h4>
+                </Card.Header>
+                <Card.Img variant="top" src={game.image} style={imageDisplay}/>
+                <Card.Body>
+                    <Card.Text>
+                        {/* <div style={cardBody}>
             <div style={backgroundCSS}>
                 <Container className="fluid">
                     <Card style={cardCSS}>
@@ -239,6 +267,39 @@ const GameShow = ({ user, msgAlert, setUser }) => {
                             :
                             null
                         }
+                    
+                </Card.Body>
+                </Card>
+                </Col>
+                <Col style={col2Style}>
+                <div>
+                <div>{reviewCards}</div>
+                <Card style={reviewCardCSS}>
+                    <Button style={reviewButtonCSS} onClick={() => setReviewModalShow(true)} className="m-2" variant="info">
+                        Write {game.name} a review!
+                    </Button>
+                </Card>
+                </div>
+            <EditReviewModal 
+                user={user}
+                game={game}
+                show={editModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setEditModalShow(false)}
+            />
+            <NewReviewModal 
+                user={user}
+                game={game}
+                show={reviewModalShow}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setReviewModalShow(false)}
+            />
+            </Col>
+            </Row>
+            </Container>
+        </div>
                     </Card>
                     {reviewCards}
                     <EditReviewModal

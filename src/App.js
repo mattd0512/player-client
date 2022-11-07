@@ -24,6 +24,9 @@ import GameSearch from './components/games/GameSearchResults'
 import MyProfile from './components/profiles/MyProfile'
 import Profile from './components/profiles/Profile';
 
+const backgroundCSS = {
+	backgroundColor: 'rgb(212, 212, 212)'
+}
 
 
 const App = () => {
@@ -71,6 +74,7 @@ const App = () => {
 	}
 
 		return (
+			<div style={backgroundCSS}>
 			<Fragment>
 				<Header user={user} />
 				<Routes>
@@ -148,6 +152,7 @@ const App = () => {
     			</div> */}
 				
 			</Fragment>	
+			</div>
 		);
 }
 

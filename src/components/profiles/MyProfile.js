@@ -16,6 +16,19 @@ import { Badge, Modal, Container } from 'react-bootstrap'
 import { myProfile, editPlatform, deletePlatform, addPlatform } from '../../api/profile'
 // import { updatePlatform } from '../../api/profile'
 
+const backgroundCSS = {
+    backgroundColor: 'rgb(212, 212, 212)'
+}
+
+const profileInfo = {
+    // display: 'flex',
+    // justifyContent: 'center'
+    marginLeft: '1rem',
+    paddingTop: '1rem',
+    paddingBottom: '1rem',
+    // textAlign: 'center'
+}
+
 const thumbnailImg = {
     borderRadius: '50%',
     height: '150px',
@@ -181,6 +194,36 @@ const MyProfile = (props) => {
 
     return (
         <>
+        <div style={backgroundCSS}>
+            
+            <div style={profileInfo}>
+            <h3>
+                {user.thumbnail?
+                <img src={user.thumbnail} style={thumbnailImg}/>
+                :
+                null
+                }
+
+                <br />
+                Hello, {user.username}
+                </h3 >
+            <Button className="btn-sm m-1" onClick={NewPlatform}>Add a Platform Username</Button>
+            { user && user.platforms.length > 0?
+                <>
+                <h6>My Gamer Tags:<small><i>(click to edit or remove)</i></small></h6>
+                {platforms}
+                
+                </>
+                :
+                null
+            }
+            </div>
+            <div style={ cardContainerLayout }>
+            {gameCards }</div>
+            
+        </div>
+
+{/* Modal for editing an existing username/platform */}
             <div >
 
                 <h3>

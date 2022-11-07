@@ -7,6 +7,34 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+const pageBody = {
+    backgroundColor: 'rgb(241, 50, 50)',
+    height: '50rem'
+}
+
+const signInText = {
+    textAlign: 'center',
+    fontFamily: 'Bungee Inline',
+    color: 'white',
+    fontWeight: 'bold'
+}
+
+const bungeeFont = {
+    fontFamily: 'Bungee Inline',
+    fontWeight: 'bold',
+    color: 'white'
+}
+
+const boldText = {
+    fontWeight: 'bold'
+}
+
+const buttonCenter = {
+    marginTop: '1rem',
+    textAlign: 'center',
+    borderRadius: '15%',
+}
+
 const SignIn = (props) => {
 
     const [name, setName] = useState('')
@@ -43,15 +71,15 @@ const SignIn = (props) => {
 	}
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-4 mx-auto mt-5'>
+        <div style={pageBody} className='row'>
+            <div className='col-sm-10 col-md-4 mx-auto mt-5' style={bungeeFont}>
                 
                 <br></br>
                 <br></br>
                 <br></br>
                 <div>
                 </div>
-                <h3>Sign In</h3>
+                <h3 style={signInText}>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
                         <Form.Label>Email address or Username</Form.Label>
@@ -75,9 +103,11 @@ const SignIn = (props) => {
                             onChange={e => setPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <div style={buttonCenter}>
+                    <Button style={boldText} variant='primary' type='submit'>
                         Submit
                     </Button>
+                    </div>
                     <br></br>
                    
                 </Form>

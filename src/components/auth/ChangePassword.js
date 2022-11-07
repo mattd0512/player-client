@@ -7,6 +7,34 @@ import messages from '../shared/AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+const pageBody = {
+    backgroundColor: 'rgb(241, 50, 50)',
+    height: '50rem'
+}
+
+const changePasswordText = {
+    textAlign: 'center',
+    fontFamily: 'Bungee Inline',
+    color: 'white',
+    fontWeight: 'bold'
+}
+
+const bungeeFont = {
+    fontFamily: 'Bungee Inline',
+    fontWeight: 'bold',
+    color: 'white'
+}
+
+const boldText = {
+    fontWeight: 'bold'
+}
+
+const buttonCenter = {
+    marginTop: '1rem',
+    textAlign: 'center',
+    borderRadius: '15%',
+}
+
 const ChangePassword = (props) => {
 
     const [oldPassword, setOldPassword] = useState('')
@@ -41,9 +69,9 @@ const ChangePassword = (props) => {
 	}
 
     return (
-        <div className='row'>
-            <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-                <h3>Change Password</h3>
+        <div className='row' style={pageBody}>
+            <div className='col-sm-10 col-md-8 mx-auto mt-5' style={bungeeFont}>
+                <h3 style={changePasswordText}>Change Password</h3>
                 <Form onSubmit={onChangePassword}>
                     <Form.Group controlId='oldPassword'>
                         <Form.Label>Old password</Form.Label>
@@ -67,9 +95,11 @@ const ChangePassword = (props) => {
                             onChange={e => setNewPassword(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <div style={buttonCenter}>
+                    <Button style={boldText} variant='primary' type='submit'>
                         Submit
                     </Button>
+                    </div>
                 </Form>
             </div>
         </div>
