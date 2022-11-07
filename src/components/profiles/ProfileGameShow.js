@@ -3,6 +3,7 @@ import { Container, Card, Button, ButtonGroup } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { localGameShow } from '../../api/game'
 import Spinner from 'react-bootstrap/Spinner'
+// remove unused import
 import apiUrl from '../../apiConfig'
 import { removeFromCollection, setAsFavorite } from '../../api/profile'
 
@@ -176,6 +177,7 @@ const GameShow = ({ user, msgAlert, gameId, mine, setUser }) => {
                         {mine?
                         <>
                         <Button onClick={() => removeFromMyLibrary()} className ="btn-success m-1">Remove from Library</Button>
+                        {/* Conditionally render here */}
                         {user.thumbnail != game.thumbnail?
                         <Button onClick={() => myFavorite()} className ="btn-success m-1">Set as Profile Pic</Button>
                         :
