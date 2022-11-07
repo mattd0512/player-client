@@ -1,5 +1,5 @@
 {
-  "name": "game-share-client",
+  "name": "gameshare-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
