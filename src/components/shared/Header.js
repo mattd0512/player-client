@@ -54,11 +54,6 @@ const authenticatedOptions = (
 			</Link>
 		</Nav.Link>
 
-		<Nav.Link>
-			<Link to='my-profile' style={linkStyle} className='m-2'>
-				My profile
-			</Link>
-		</Nav.Link>
 	</div>	
 
 )
